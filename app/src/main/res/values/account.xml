@@ -1,0 +1,12 @@
+<resources>
+    <string-array name="account_array">
+        <item>Facebook</item>
+        <item>Instagram</item>
+        <item>Twitter</item>
+        <item>Telegram</item>
+        <item>Google</item>
+        <item>Libero</item>
+        <item>MyCicero</item>
+        <item>Netflix</item>
+    </string-array>
+</resources>
