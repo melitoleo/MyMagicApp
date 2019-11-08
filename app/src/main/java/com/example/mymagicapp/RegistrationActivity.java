@@ -44,7 +44,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                 AccountDatabase.getDatabase(getApplicationContext()).userDao().insert(user);
 
-                Intent intent = new Intent(view.getContext(), RegistrationActivity.class);
+                Intent intent = new Intent(view.getContext(), LoginActivity.class);
                 startActivity(intent);
             }
         });
