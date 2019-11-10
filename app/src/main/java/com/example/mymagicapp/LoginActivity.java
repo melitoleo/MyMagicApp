@@ -23,16 +23,21 @@ public class LoginActivity extends AppCompatActivity {
         final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
 
         final EditText username = findViewById(R.id.txtLoginUsername);
-        final EditText password = findViewById(R.id.txtLoginPassword);
+        final EditText txtPassword = findViewById(R.id.txtLoginPassword);
         final TextView txtNotFound = findViewById(R.id.txtNotFound);
+
+        final Security security = new Security(getApplicationContext());
 
         Button btnLogin = findViewById(R.id.btnLogin);
         Button btnRegister = findViewById(R.id.btnOpenRegister);
 
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                User user = database.userDao().loginUser(username.getText().toString(), password.getText().toString());
+                String password = security.Encrypt(txtPassword.getText().toString(),txtPassword.getText().toString());
+
+                User user = database.userDao().loginUser(username.getText().toString(), password);
 
                 if(user==null){
                     txtNotFound.setText(String.format("User %s not found!", username.getText().toString()));

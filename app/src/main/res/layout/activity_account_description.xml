@@ -22,7 +22,15 @@
         <TextView
             android:id="@+id/txtViewPassword"
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_height="50dp"
+            android:inputType="textPassword"/>
+x
+
+        <CheckBox
+            android:id="@+id/ckbPasswordToggle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Show Password" />
 
         <TextView
             android:id="@+id/txtViewPasswordC"

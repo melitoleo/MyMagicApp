@@ -35,6 +35,8 @@ public class AddAccountActivity extends AppCompatActivity {
 
         final User user = database.userDao().findUser(userId);
 
+        final String password = security.Decrypt(user.password, user.password);
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.account_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -47,7 +49,7 @@ public class AddAccountActivity extends AppCompatActivity {
                 account.userId = user.id;
                 account.description = txtDescription.getText().toString();
                 account.type = spnAccountType.getSelectedItem().toString();
-                account.password = security.Encrypt(txtPassword.getText().toString(),user.password);
+                account.password = security.Encrypt(txtPassword.getText().toString(),password);
 
                 database.accountDao().insert(account);
 

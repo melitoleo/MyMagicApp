@@ -26,6 +26,8 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         final Button btnRegistration = findViewById(R.id.btnRegistration);
+        final Security security = new Security(getApplicationContext());
+
         btnRegistration.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 User user = new User();
@@ -40,7 +42,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 user.surname = surname.getText().toString();
                 user.email = email.getText().toString();
                 user.username = username.getText().toString();
-                user.password = password.getText().toString();
+                user.password = security.Encrypt(password.getText().toString(),password.getText().toString());
 
                 AccountDatabase.getDatabase(getApplicationContext()).userDao().insert(user);
 
