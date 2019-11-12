@@ -39,7 +39,8 @@
                 android:id="@+id/txtAccountPassword"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:hint="@string/prompt_password" />
+                android:hint="@string/prompt_password"
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

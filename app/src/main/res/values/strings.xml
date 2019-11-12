@@ -13,4 +13,6 @@
     <string name="login_failed">"Login failed"</string>
     <string name="account_description">"Descrizione Account"</string>
     <string name="btn_add">"Aggiungi"</string>
+    <string name="btn_copy">"Copia"</string>
+    <string name="txt_copied">"Copiato negli appunti"</string>
 </resources>
