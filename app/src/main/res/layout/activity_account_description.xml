@@ -15,10 +15,17 @@
             android:id="@+id/txtViewDescription"
             android:layout_width="match_parent"
             android:layout_height="50dp"/>
+
         <TextView
             android:id="@+id/txtViewType"
             android:layout_width="match_parent"
             android:layout_height="50dp"/>
+
+        <TextView
+            android:id="@+id/txtViewUsername"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
         <TextView
             android:id="@+id/txtViewPassword"
             android:layout_width="match_parent"

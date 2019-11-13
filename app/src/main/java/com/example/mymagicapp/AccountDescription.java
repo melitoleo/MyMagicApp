@@ -34,6 +34,7 @@ public class AccountDescription extends AppCompatActivity {
 
         TextView txtDescription = findViewById(R.id.txtViewDescription);
         TextView txtType = findViewById(R.id.txtViewType);
+        TextView txtUsername = findViewById(R.id.txtViewUsername);
         final TextView txtPassword = findViewById(R.id.txtViewPassword);
         CheckBox cbkPasswordToggle = findViewById(R.id.ckbPasswordToggle);
         TextView txtPasswordC = findViewById(R.id.txtViewPasswordC);
@@ -47,6 +48,7 @@ public class AccountDescription extends AppCompatActivity {
 
         txtDescription.setText(account.description);
         txtType.setText(account.type);
+        txtUsername.setText(account.username);
         txtPassword.setText(accountPassword);
         txtPasswordC.setText(account.password);
 

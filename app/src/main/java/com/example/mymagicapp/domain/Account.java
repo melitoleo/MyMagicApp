@@ -19,6 +19,9 @@ public class Account {
     @ColumnInfo(name = "type")
     public String type;
 
+    @ColumnInfo(name = "username")
+    public String username;
+
     @ColumnInfo(name = "password")
     public String password;
 }

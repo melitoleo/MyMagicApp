@@ -32,6 +32,7 @@ public class AddAccountActivity extends AppCompatActivity {
         Button btnAddAccount = findViewById(R.id.btnAddAccount);
         final TextInputEditText txtDescription = findViewById(R.id.txtAccountDescription);
         final TextInputEditText txtPassword = findViewById(R.id.txtAccountPassword);
+        final TextInputEditText txtUsername = findViewById(R.id.txtAccountUsername);
 
         final User user = database.userDao().findUser(userId);
 
@@ -49,6 +50,7 @@ public class AddAccountActivity extends AppCompatActivity {
                 account.userId = user.id;
                 account.description = txtDescription.getText().toString();
                 account.type = spnAccountType.getSelectedItem().toString();
+                account.username = txtUsername.getText().toString();
                 account.password = security.Encrypt(txtPassword.getText().toString(),password);
 
                 database.accountDao().insert(account);
