@@ -8,12 +8,12 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.content.ClipboardManager;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.mymagicapp.dao.AccountDatabase;
 import com.example.mymagicapp.domain.Account;
@@ -36,9 +36,9 @@ public class AccountDescription extends AppCompatActivity {
         TextView txtType = findViewById(R.id.txtViewType);
         TextView txtUsername = findViewById(R.id.txtViewUsername);
         final TextView txtPassword = findViewById(R.id.txtViewPassword);
-        CheckBox cbkPasswordToggle = findViewById(R.id.ckbPasswordToggle);
-        TextView txtPasswordC = findViewById(R.id.txtViewPasswordC);
-        Button btnCopy = findViewById(R.id.btnCopy);
+        ToggleButton tglBtnPassword = findViewById(R.id.btnTogglePassword);
+        //TextView txtPasswordC = findViewById(R.id.txtViewPasswordC);
+        ImageButton btnCopy = findViewById(R.id.btnCopy);
 
         Account account = database.accountDao().findAccount(accountId);
         User user = database.userDao().findUser(account.userId);
@@ -50,9 +50,11 @@ public class AccountDescription extends AppCompatActivity {
         txtType.setText(account.type);
         txtUsername.setText(account.username);
         txtPassword.setText(accountPassword);
-        txtPasswordC.setText(account.password);
+        //txtPasswordC.setText(account.password);
 
-        cbkPasswordToggle.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        txtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
+
+        tglBtnPassword.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
