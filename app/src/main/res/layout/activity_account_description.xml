@@ -9,7 +9,9 @@
     <LinearLayout
         android:id="@+id/llType"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/border_bottom"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,41 +24,52 @@
             <TextView
                 android:id="@+id/txtLblType"
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
                 android:text="@string/account_description"
-                android:textAlignment="gravity"
+                android:textAllCaps="false"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.50"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/txtViewType"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/txtViewType"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="50dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center_vertical"
                 android:textAlignment="gravity"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img4Type"
                 app:layout_constraintTop_toBottomOf="@+id/txtLblType" />
 
-            <ImageButton
+            <ImageView
+                android:id="@+id/img4Type"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/txtLblType"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtLblType"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_lock_outline_black_24dp" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/llDescription"
+        android:background="@drawable/border_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
