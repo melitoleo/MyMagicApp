@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.mymagicapp.dao.AccountDatabase;
+import com.example.mymagicapp.domain.Type;
 import com.example.mymagicapp.domain.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -28,6 +29,10 @@ public class RegistrationActivity extends AppCompatActivity {
         final Button btnRegistration = findViewById(R.id.btnRegistration);
         final Security security = new Security(getApplicationContext());
 
+        final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
+
+        final String[] defaultTypeDescription = {"Social","Email"};
+
         btnRegistration.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 User user = new User();
@@ -44,7 +49,13 @@ public class RegistrationActivity extends AppCompatActivity {
                 user.username = username.getText().toString();
                 user.password = security.Encrypt(password.getText().toString(),password.getText().toString());
 
-                AccountDatabase.getDatabase(getApplicationContext()).userDao().insert(user);
+                database.userDao().insert(user);
+
+                for (String description: defaultTypeDescription) {
+                    Type type = new Type();
+                    type.description = description;
+                    database.typeDao().insert(type);
+                }
 
                 Intent intent = new Intent(view.getContext(), LoginActivity.class);
                 startActivity(intent);

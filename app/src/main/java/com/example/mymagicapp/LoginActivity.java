@@ -22,6 +22,18 @@ public class LoginActivity extends AppCompatActivity {
 
         final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
 
+        boolean existUserIsEmpty = database.userDao().getAll().isEmpty();
+
+        if(existUserIsEmpty) {
+            Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
+            startActivity(intent);
+        }else{
+            LoginUser(database);
+        }
+    }
+
+    private void LoginUser(final AccountDatabase database) {
+
         final EditText username = findViewById(R.id.txtLoginUsername);
         final EditText txtPassword = findViewById(R.id.txtLoginPassword);
         final TextView txtNotFound = findViewById(R.id.txtNotFound);
@@ -29,31 +41,21 @@ public class LoginActivity extends AppCompatActivity {
         final Security security = new Security(getApplicationContext());
 
         Button btnLogin = findViewById(R.id.btnLogin);
-        Button btnRegister = findViewById(R.id.btnOpenRegister);
-
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String password = security.Encrypt(txtPassword.getText().toString(),txtPassword.getText().toString());
+                String password = security.Encrypt(txtPassword.getText().toString(), txtPassword.getText().toString());
 
                 User user = database.userDao().loginUser(username.getText().toString(), password);
 
-                if(user==null){
+                if (user == null) {
                     txtNotFound.setText(String.format("User %s not found!", username.getText().toString()));
-                }else{
+                } else {
                     Intent intent = new Intent(view.getContext(), AccountActivity.class);
                     intent.putExtra("userId", user.id);
                     startActivity(intent);
                 }
-            }
-        });
-
-        btnRegister.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent(view.getContext(), RegistrationActivity.class);
-                startActivity(intent);
             }
         });
     }

@@ -14,6 +14,9 @@ import com.example.mymagicapp.domain.Account;
 import com.example.mymagicapp.domain.User;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddAccountActivity extends AppCompatActivity {
 
     @Override
@@ -38,9 +41,15 @@ public class AddAccountActivity extends AppCompatActivity {
 
         final String password = security.Decrypt(user.password, user.password);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.account_array, android.R.layout.simple_spinner_item);
+        List<String> descriptions = database.typeDao().getAllDescription();
+
+        String[] arrayDescriptions = new String[descriptions.size()];
+
+        arrayDescriptions = descriptions.toArray(arrayDescriptions);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arrayDescriptions);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         spnAccountType.setAdapter(adapter);
 
         btnAddAccount.setOnClickListener(new View.OnClickListener() {
