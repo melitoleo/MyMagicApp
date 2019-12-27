@@ -31,7 +31,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
 
-        final String[] defaultTypeDescription = {"Social","Email"};
+        final String[] defaultTypeDescription = {"Social","Email","a","b","c","d","e"};
 
         btnRegistration.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
