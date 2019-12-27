@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.mymagicapp.dao.AccountDatabase;
 import com.example.mymagicapp.domain.Account;
@@ -26,13 +27,16 @@ public class AddAccountActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         final int userId = b.getInt("userId");
+        final String type = b.getString("type");
 
         final Security security = new Security(getApplicationContext());
         final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
 
-
-        final Spinner spnAccountType = findViewById(R.id.spnAccount);
         Button btnAddAccount = findViewById(R.id.btnAddAccount);
+
+        TextView txtType =  findViewById(R.id.txtAddType);
+        txtType.setText(type);
+        
         final TextInputEditText txtDescription = findViewById(R.id.txtAccountDescription);
         final TextInputEditText txtPassword = findViewById(R.id.txtAccountPassword);
         final TextInputEditText txtUsername = findViewById(R.id.txtAccountUsername);
@@ -41,24 +45,13 @@ public class AddAccountActivity extends AppCompatActivity {
 
         final String password = security.Decrypt(user.password, user.password);
 
-        List<String> descriptions = database.typeDao().getAllDescription();
-
-        String[] arrayDescriptions = new String[descriptions.size()];
-
-        arrayDescriptions = descriptions.toArray(arrayDescriptions);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arrayDescriptions);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spnAccountType.setAdapter(adapter);
-
         btnAddAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Account account = new Account();
                 account.userId = user.id;
                 account.description = txtDescription.getText().toString();
-                account.type = spnAccountType.getSelectedItem().toString();
+                account.type = type;
                 account.username = txtUsername.getText().toString();
                 account.password = security.Encrypt(txtPassword.getText().toString(),password);
 
@@ -66,6 +59,7 @@ public class AddAccountActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(view.getContext(), AccountActivity.class);
                 intent.putExtra("userId", user.id);
+                intent.putExtra("type", type);
                 startActivity(intent);
             }
         });

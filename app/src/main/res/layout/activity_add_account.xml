@@ -6,13 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".AddAccountActivity">
 
-    <Spinner
-        android:id="@+id/spnAccount"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/txtAddType"
+        android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
+        android:gravity="center_vertical"
+        android:textAlignment="gravity"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -26,7 +29,7 @@
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnAccount"
+        app:layout_constraintTop_toBottomOf="@+id/txtAddType"
         tools:ignore="MissingConstraints">
 
         <com.google.android.material.textfield.TextInputEditText
