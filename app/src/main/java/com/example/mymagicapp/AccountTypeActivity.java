@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.mymagicapp.dao.AccountDatabase;
 import com.example.mymagicapp.domain.User;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -23,26 +24,22 @@ public class AccountTypeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_type);
 
-        Bundle b = getIntent().getExtras();
-        final int userId = b.getInt("userId");
-
         final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
         TextView txtWelcome = findViewById(R.id.txtWelcome);
-        //FloatingActionButton fabAddAccount = findViewById(R.id.fabAddAccount);
+        FloatingActionButton fabAddType = findViewById(R.id.fabAddType);
         TableLayout tblDescription = findViewById(R.id.tblTypeDesc);
 
-        User user = database.userDao().findUser(userId);
+        final User user = database.userDao().getAll().get(0);
 
         txtWelcome.setText(String.format("Welcome %s", user.username));
 
-        //fabAddAccount.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View view) {
-        //        Intent intent = new Intent(view.getContext(), AddAccountActivity.class);
-        //        intent.putExtra("userId",userId);
-        //        startActivity(intent);
-        //    }
-        //});
+        fabAddType.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), TypeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         List<String> descriptions = database.typeDao().getAllDescription();
 
@@ -62,7 +59,7 @@ public class AccountTypeActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(view.getContext(),AccountActivity.class);
-                    intent.putExtra("userId", userId);
+                    intent.putExtra("userId", user.id);
                     intent.putExtra("type", description);
                     startActivity(intent);
                 }

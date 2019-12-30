@@ -19,6 +19,15 @@ public interface TypeDao {
     @Query("SELECT description FROM type")
     List<String> getAllDescription();
 
+    @Query("SELECT t.id,  t.description AS description, Count(a.type) AS accountCount FROM type t LEFT JOIN account a ON t.description=a.type GROUP BY t.description ORDER BY t.description ASC")
+    List<Type> getTypeAggregate();
+
+    @Query("DELETE FROM type WHERE description=:description")
+    void deleteByDescription(String description);
+
+    @Query("SELECT CAST(COUNT(1) AS BIT) FROM Type t WHERE t.description=:description")
+    Boolean typeExist(String description);
+
     @Insert
     void insert(Type type);
 

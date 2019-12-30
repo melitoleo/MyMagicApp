@@ -53,7 +53,6 @@ public class LoginActivity extends AppCompatActivity {
                     txtNotFound.setText(String.format("User %s not found!", username.getText().toString()));
                 } else {
                     Intent intent = new Intent(view.getContext(), AccountTypeActivity.class);
-                    intent.putExtra("userId", user.id);
                     startActivity(intent);
                 }
             }

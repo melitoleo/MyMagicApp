@@ -12,4 +12,14 @@ public class Type {
 
     @ColumnInfo(name = "description")
     public String description;
+
+    public int accountCount;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getAccountCount() {
+        return accountCount;
+    }
 }
