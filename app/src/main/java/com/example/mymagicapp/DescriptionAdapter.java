@@ -56,7 +56,7 @@ public class DescriptionAdapter extends RecyclerView.Adapter<DescriptionAdapter.
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Type type = typeList.get(position);
         holder.typeDescription.setText(type.getDescription());
-        holder.accountCount.setText(String.valueOf(type.getAccountCount()));
+        holder.accountCount.setText(String.format("Account associati: %s", String.valueOf(type.getAccountCount())));
 
         holder.btnRemoveType.setOnClickListener(new View.OnClickListener() {
             @Override

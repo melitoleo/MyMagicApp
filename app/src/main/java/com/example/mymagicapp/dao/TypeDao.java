@@ -16,7 +16,7 @@ public interface TypeDao {
     @Query("SELECT * FROM type")
     List<Type> findAll();
 
-    @Query("SELECT description FROM type")
+    @Query("SELECT description FROM type ORDER BY description ASC")
     List<String> getAllDescription();
 
     @Query("SELECT t.id,  t.description AS description, Count(a.type) AS accountCount FROM type t LEFT JOIN account a ON t.description=a.type GROUP BY t.description ORDER BY t.description ASC")

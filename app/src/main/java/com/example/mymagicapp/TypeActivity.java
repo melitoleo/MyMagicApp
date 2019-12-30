@@ -8,19 +8,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.example.mymagicapp.dao.AccountDatabase;
 import com.example.mymagicapp.domain.Type;
-import com.google.android.material.textfield.TextInputEditText;
 
 public class TypeActivity extends AppCompatActivity {
 
     private RecyclerView viewTypeList;
     private DescriptionAdapter adapter;
     private ImageButton btnAddType;
-    private TextInputEditText txtAddType;
+    private EditText txtAddType;
     private AccountDatabase database;
     private String description;
 

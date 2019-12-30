@@ -17,7 +17,7 @@ public interface AccountDao {
     @Query("SELECT * FROM account WHERE userId = :userId")
     List<Account> findUserAccount(int userId);
 
-    @Query("SELECT * FROM account WHERE userId = :userId AND type = :type")
+    @Query("SELECT * FROM account WHERE userId = :userId AND type = :type ORDER BY type ASC")
     List<Account> findUserAccountByType(int userId, String type);
 
     @Query("SELECT * FROM account WHERE id = :id")

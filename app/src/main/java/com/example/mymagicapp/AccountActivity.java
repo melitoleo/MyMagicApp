@@ -32,13 +32,11 @@ public class AccountActivity extends AppCompatActivity {
         final String type = b.getString("type");
 
         final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
-        TextView txtWelcome = findViewById(R.id.txtWelcome);
+        TextView txtWelcome = findViewById(R.id.txtAccountTypeDescription);
         FloatingActionButton fabAddAccount = findViewById(R.id.fabAddAccount);
         LinearLayout llAccount = findViewById(R.id.llAccount);
 
-        User user = database.userDao().findUser(userId);
-
-        txtWelcome.setText(String.format("Welcome %s", user.username));
+        txtWelcome.setText(type);
 
         fabAddAccount.setOnClickListener(new View.OnClickListener() {
             @Override

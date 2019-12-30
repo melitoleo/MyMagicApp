@@ -31,7 +31,7 @@ public class AccountTypeActivity extends AppCompatActivity {
 
         final User user = database.userDao().getAll().get(0);
 
-        txtWelcome.setText(String.format("Welcome %s", user.username));
+        txtWelcome.setText(String.format("Benvenuto %s", user.username));
 
         fabAddType.setOnClickListener(new View.OnClickListener() {
             @Override
