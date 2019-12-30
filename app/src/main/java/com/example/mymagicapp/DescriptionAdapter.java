@@ -63,11 +63,11 @@ public class DescriptionAdapter extends RecyclerView.Adapter<DescriptionAdapter.
             public void onClick(View view) {
                 if(type.getAccountCount() > 0)
                 {
-                    Toast.makeText(context, String.format("Ci sono %d associati a questa categpria", type.getAccountCount()), Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, String.format("Ci sono %d associati a questa categoria", type.getAccountCount()), Toast.LENGTH_LONG).show();
                 }
                 else {
                     database.typeDao().deleteByDescription(type.getDescription());
-                    Toast.makeText(context, String.format("Categoria %s Eliminata", type.getDescription()), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, String.format("Categoria %s eliminata", type.getDescription()), Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(view.getContext(), AccountTypeActivity.class);
                     context.startActivity(intent);
