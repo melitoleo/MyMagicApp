@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.sql.Date;
+
 @Entity
 public class Account {
 
@@ -24,4 +26,7 @@ public class Account {
 
     @ColumnInfo(name = "password")
     public String password;
+
+    @ColumnInfo(name = "creationDate")
+    public String creationDate;
 }

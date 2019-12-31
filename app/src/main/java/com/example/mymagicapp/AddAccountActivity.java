@@ -15,8 +15,12 @@ import com.example.mymagicapp.domain.Account;
 import com.example.mymagicapp.domain.User;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class AddAccountActivity extends AppCompatActivity {
 
@@ -45,6 +49,12 @@ public class AddAccountActivity extends AppCompatActivity {
 
         final String password = security.Decrypt(user.password, user.password);
 
+        Locale.setDefault(Locale.ITALIAN);
+        SimpleDateFormat dataFormat = new SimpleDateFormat("dd-MM-yyyy");
+        long millis=System.currentTimeMillis();
+        final Date date=new Date(millis);
+        final String dateNow = dataFormat.format(date);
+
         btnAddAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +64,7 @@ public class AddAccountActivity extends AppCompatActivity {
                 account.type = type;
                 account.username = txtUsername.getText().toString();
                 account.password = security.Encrypt(txtPassword.getText().toString(),password);
+                account.creationDate = dateNow;
 
                 database.accountDao().insert(account);
 

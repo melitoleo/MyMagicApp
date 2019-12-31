@@ -35,6 +35,7 @@ public class AccountDescription extends AppCompatActivity {
         TextView txtDescription = findViewById(R.id.txtViewDescription);
         TextView txtType = findViewById(R.id.txtViewType);
         TextView txtUsername = findViewById(R.id.txtViewUsername);
+        TextView txtCreationDate = findViewById(R.id.txtViewDate);
         final TextView txtPassword = findViewById(R.id.txtViewPassword);
         ToggleButton tglBtnPassword = findViewById(R.id.btnTogglePassword);
         //TextView txtPasswordC = findViewById(R.id.txtViewPasswordC);
@@ -50,6 +51,7 @@ public class AccountDescription extends AppCompatActivity {
         txtType.setText(account.type);
         txtUsername.setText(account.username);
         txtPassword.setText(accountPassword);
+        txtCreationDate.setText(account.creationDate);
         //txtPasswordC.setText(account.password);
 
         txtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
