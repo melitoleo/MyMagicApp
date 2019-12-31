@@ -19,19 +19,24 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    private AccountDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
+        database = AccountDatabase.getDatabase(getApplicationContext());
+        final User user = database.userDao().getAll().get(0);
+
+        getSupportActionBar().setTitle("Home");
+        getSupportActionBar().setSubtitle(String.format("Benvenuto %s", user.username));
+
         TextView txtWelcome = findViewById(R.id.txtWelcome);
         FloatingActionButton fabAddType = findViewById(R.id.fabAddType);
         TableLayout tblDescription = findViewById(R.id.tblTypeDesc);
 
-        final User user = database.userDao().getAll().get(0);
-
-        txtWelcome.setText(String.format("Benvenuto %s", user.username));
+        //txtWelcome.setText(String.format("Benvenuto %s", user.username));
 
         fabAddType.setOnClickListener(new View.OnClickListener() {
             @Override
