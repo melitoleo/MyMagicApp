@@ -49,12 +49,6 @@ public class AddAccountActivity extends AppCompatActivity {
 
         final String password = security.Decrypt(user.password, user.password);
 
-        Locale.setDefault(Locale.ITALIAN);
-        SimpleDateFormat dataFormat = new SimpleDateFormat("dd-MM-yyyy");
-        long millis=System.currentTimeMillis();
-        final Date date=new Date(millis);
-        final String dateNow = dataFormat.format(date);
-
         btnAddAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,7 +58,7 @@ public class AddAccountActivity extends AppCompatActivity {
                 account.type = type;
                 account.username = txtUsername.getText().toString();
                 account.password = security.Encrypt(txtPassword.getText().toString(),password);
-                account.creationDate = dateNow;
+                account.creationDate = GetDateFormat();
 
                 database.accountDao().insert(account);
 
@@ -74,5 +68,13 @@ public class AddAccountActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private String GetDateFormat(){
+        Locale.setDefault(Locale.ITALIAN);
+        SimpleDateFormat dataFormat = new SimpleDateFormat("dd-MM-yyyy");
+        long millis=System.currentTimeMillis();
+        final Date date=new Date(millis);
+        return dataFormat.format(date);
     }
 }
