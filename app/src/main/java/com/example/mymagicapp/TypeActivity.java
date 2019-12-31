@@ -54,7 +54,7 @@ public class TypeActivity extends AppCompatActivity {
                     type.description=description;
                     database.typeDao().insert(type);
 
-                    Intent intent = new Intent(view.getContext(), AccountTypeActivity.class);
+                    Intent intent = new Intent(view.getContext(), MainActivity.class);
                     startActivity(intent);
                 }
             }

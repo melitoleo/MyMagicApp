@@ -17,12 +17,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
-public class AccountTypeActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account_type);
+        setContentView(R.layout.activity_main);
 
         final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
         TextView txtWelcome = findViewById(R.id.txtWelcome);

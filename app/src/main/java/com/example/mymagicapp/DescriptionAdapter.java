@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,7 +68,7 @@ public class DescriptionAdapter extends RecyclerView.Adapter<DescriptionAdapter.
                     database.typeDao().deleteByDescription(type.getDescription());
                     Toast.makeText(context, String.format("Categoria %s eliminata", type.getDescription()), Toast.LENGTH_SHORT).show();
 
-                    Intent intent = new Intent(view.getContext(), AccountTypeActivity.class);
+                    Intent intent = new Intent(view.getContext(), MainActivity.class);
                     context.startActivity(intent);
                 }
             }

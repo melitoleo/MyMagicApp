@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".TypeActivity"></activity>
-        <activity android:name=".AccountTypeActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".AccountDescription" />
         <activity android:name=".AddAccountActivity" />
         <activity android:name=".AccountActivity" />
