@@ -5,7 +5,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -27,7 +26,8 @@ public class AccountActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         final String type = b.getString("type");
 
-        ToolBarSetting(type);
+        Toolbar toolbar = findViewById(R.id.tlb_main);
+        ToolBarManager.Setting(getApplicationContext(),toolbar, type, type, MainActivity.class);
 
         final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
         FloatingActionButton fabAddAccount = findViewById(R.id.fabAddAccount);
@@ -61,20 +61,5 @@ public class AccountActivity extends AppCompatActivity {
 
             llAccount.addView(btnAccount);
         }
-    }
-
-    private void ToolBarSetting(final String type) {
-        Toolbar toolbar = findViewById(R.id.tlb_main);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        toolbar.setTitle(type);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("type",type);
-                startActivity(intent);
-            }
-        });
     }
 }

@@ -38,7 +38,8 @@ public class AccountDescription extends AppCompatActivity {
         Account account = database.accountDao().findAccount(accountId);
         User user = database.userDao().findUser(account.userId);
 
-        ToolBarSetting(account.type);
+        Toolbar toolbar = findViewById(R.id.tlb_main);
+        ToolBarManager.Setting(getApplicationContext(),toolbar, getString(R.string.account_desc_title), account.type, AccountActivity.class);
 
         TextView txtDescription = findViewById(R.id.txtViewDescription);
         TextView txtType = findViewById(R.id.txtViewType);
@@ -46,7 +47,6 @@ public class AccountDescription extends AppCompatActivity {
         TextView txtCreationDate = findViewById(R.id.txtViewDate);
         final TextView txtPassword = findViewById(R.id.txtViewPassword);
         ToggleButton tglBtnPassword = findViewById(R.id.btnTogglePassword);
-        //TextView txtPasswordC = findViewById(R.id.txtViewPasswordC);
         ImageButton btnCopy = findViewById(R.id.btnCopy);
 
         String userPassword = security.Decrypt(user.password,user.password);
@@ -57,7 +57,6 @@ public class AccountDescription extends AppCompatActivity {
         txtUsername.setText(account.username);
         txtPassword.setText(accountPassword);
         txtCreationDate.setText(account.creationDate);
-        //txtPasswordC.setText(account.password);
 
         txtPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
@@ -80,21 +79,6 @@ public class AccountDescription extends AppCompatActivity {
                 clipboard.setPrimaryClip(clip);
 
                 Toast.makeText(getApplicationContext(),R.string.txt_copied,Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    private void ToolBarSetting(final String type) {
-        Toolbar toolbar = findViewById(R.id.tlb_main);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        toolbar.setTitle("Descrizione Account");
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AccountActivity.class);
-                intent.putExtra("type",type);
-                startActivity(intent);
             }
         });
     }

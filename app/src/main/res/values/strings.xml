@@ -17,4 +17,7 @@
     <string name="btn_add">"Aggiungi"</string>
     <string name="btn_copy">"Copia"</string>
     <string name="txt_copied">"Copiato negli appunti"</string>
+    <string name="account_desc_title">"Descrizione Account"</string>
+    <string name="account_new_title">Nuovo Account: %s</string>
+    <string name="type_title">Categoria</string>
 </resources>

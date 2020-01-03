@@ -31,7 +31,8 @@ public class TypeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type);
 
-        ToolBarSetting();
+        Toolbar toolbar = findViewById(R.id.tlb_main);
+        ToolBarManager.Setting(getApplicationContext(),toolbar, getString(R.string.type_title), null, MainActivity.class);
 
         database = AccountDatabase.getDatabase(getApplicationContext());
 
@@ -61,20 +62,6 @@ public class TypeActivity extends AppCompatActivity {
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
                     startActivity(intent);
                 }
-            }
-        });
-    }
-
-    private void ToolBarSetting() {
-        Toolbar toolbar = findViewById(R.id.tlb_main);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        toolbar.setTitle("Categoria");
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
             }
         });
     }

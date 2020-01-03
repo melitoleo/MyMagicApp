@@ -34,7 +34,8 @@ public class AddAccountActivity extends AppCompatActivity {
         Bundle b = getIntent().getExtras();
         final String type = b.getString("type");
 
-        ToolBarSetting(type);
+        Toolbar toolbar = findViewById(R.id.tlb_main);
+        ToolBarManager.Setting(getApplicationContext(),toolbar, String.format(getString(R.string.account_new_title), type), type, AccountActivity.class);
 
         final Security security = new Security(getApplicationContext());
         final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
@@ -72,22 +73,6 @@ public class AddAccountActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void ToolBarSetting(final String type) {
-        Toolbar toolbar = findViewById(R.id.tlb_main);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        toolbar.setTitle(String.format("Nuovo Account: %s", type));
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AccountActivity.class);
-                intent.putExtra("type",type);
-                startActivity(intent);
-            }
-        });
-    }
-
 
     private String GetDateFormat(){
         Locale.setDefault(Locale.ITALIAN);
