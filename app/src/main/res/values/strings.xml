@@ -20,4 +20,7 @@
     <string name="account_desc_title">"Descrizione Account"</string>
     <string name="account_new_title">Nuovo Account: %s</string>
     <string name="type_title">Categoria</string>
+    <string name="about_menu_item">"About"</string>
+    <string name="settings_menu_item">Dati personali</string>
+    <string name="logout_menu_item">Esci</string>
 </resources>
