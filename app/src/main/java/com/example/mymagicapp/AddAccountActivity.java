@@ -1,6 +1,7 @@
 package com.example.mymagicapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,12 +31,10 @@ public class AddAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_account);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Aggiungi Account");
-
         Bundle b = getIntent().getExtras();
-        final int userId = b.getInt("userId");
         final String type = b.getString("type");
+
+        ToolBarSetting(type);
 
         final Security security = new Security(getApplicationContext());
         final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
@@ -49,7 +48,7 @@ public class AddAccountActivity extends AppCompatActivity {
         final TextInputEditText txtPassword = findViewById(R.id.txtAccountPassword);
         final TextInputEditText txtUsername = findViewById(R.id.txtAccountUsername);
 
-        final User user = database.userDao().findUser(userId);
+        final User user = database.userDao().getAll().get(0);
 
         final String password = security.Decrypt(user.password, user.password);
 
@@ -74,13 +73,21 @@ public class AddAccountActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
+    private void ToolBarSetting(final String type) {
+        Toolbar toolbar = findViewById(R.id.tlb_main);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setTitle(String.format("Nuovo Account: %s", type));
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AccountActivity.class);
+                intent.putExtra("type",type);
+                startActivity(intent);
+            }
+        });
     }
+
 
     private String GetDateFormat(){
         Locale.setDefault(Locale.ITALIAN);

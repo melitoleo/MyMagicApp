@@ -1,9 +1,11 @@
 package com.example.mymagicapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -27,14 +29,16 @@ public class AccountDescription extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_description);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Descrizione Account");
-
         final Security security = new Security(getApplicationContext());
 
         Bundle b = getIntent().getExtras();
         final int accountId = b.getInt("accountId");
         final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
+
+        Account account = database.accountDao().findAccount(accountId);
+        User user = database.userDao().findUser(account.userId);
+
+        ToolBarSetting(account.type);
 
         TextView txtDescription = findViewById(R.id.txtViewDescription);
         TextView txtType = findViewById(R.id.txtViewType);
@@ -44,9 +48,6 @@ public class AccountDescription extends AppCompatActivity {
         ToggleButton tglBtnPassword = findViewById(R.id.btnTogglePassword);
         //TextView txtPasswordC = findViewById(R.id.txtViewPasswordC);
         ImageButton btnCopy = findViewById(R.id.btnCopy);
-
-        Account account = database.accountDao().findAccount(accountId);
-        User user = database.userDao().findUser(account.userId);
 
         String userPassword = security.Decrypt(user.password,user.password);
         final String accountPassword = security.Decrypt(account.password, userPassword);
@@ -83,11 +84,18 @@ public class AccountDescription extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
+    private void ToolBarSetting(final String type) {
+        Toolbar toolbar = findViewById(R.id.tlb_main);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setTitle("Descrizione Account");
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AccountActivity.class);
+                intent.putExtra("type",type);
+                startActivity(intent);
+            }
+        });
     }
 }

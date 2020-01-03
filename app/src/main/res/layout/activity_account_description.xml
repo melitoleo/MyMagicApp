@@ -6,16 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".AccountDescription">
 
+    <include
+        android:id="@+id/tlb_main"
+        layout="@layout/tool_bar"
+        tools:layout_editor_absoluteX="25dp"
+        tools:layout_editor_absoluteY="16dp"></include>
+
     <LinearLayout
         android:id="@+id/llType"
         android:layout_width="match_parent"
         android:layout_height="76dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/border_bottom"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tlb_main">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"

@@ -1,6 +1,7 @@
 package com.example.mymagicapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,14 +30,14 @@ public class MainActivity extends AppCompatActivity {
         database = AccountDatabase.getDatabase(getApplicationContext());
         final User user = database.userDao().getAll().get(0);
 
+        Toolbar toolbar = findViewById(R.id.tlb_main);
+        setSupportActionBar(toolbar);
+
         getSupportActionBar().setTitle("Home");
         getSupportActionBar().setSubtitle(String.format("Benvenuto %s", user.username));
 
-        TextView txtWelcome = findViewById(R.id.txtWelcome);
         FloatingActionButton fabAddType = findViewById(R.id.fabAddType);
         TableLayout tblDescription = findViewById(R.id.tblTypeDesc);
-
-        //txtWelcome.setText(String.format("Benvenuto %s", user.username));
 
         fabAddType.setOnClickListener(new View.OnClickListener() {
             @Override
