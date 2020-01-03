@@ -31,6 +31,8 @@ public class TypeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type);
 
+        ToolBarSetting();
+
         database = AccountDatabase.getDatabase(getApplicationContext());
 
         viewTypeList = findViewById(R.id.viewTypeList);
