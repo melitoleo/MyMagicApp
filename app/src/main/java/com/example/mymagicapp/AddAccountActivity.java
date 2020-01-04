@@ -70,6 +70,7 @@ public class AddAccountActivity extends AppCompatActivity {
                 intent.putExtra("userId", user.id);
                 intent.putExtra("type", type);
                 startActivity(intent);
+                finish();
             }
         });
     }

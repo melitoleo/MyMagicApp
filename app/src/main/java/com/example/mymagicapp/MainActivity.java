@@ -101,18 +101,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
+        Intent intent;
         switch(item.getItemId()){
             case R.id.menuAbout:
                 Toast.makeText(this, "You clicked about", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.menuSettings:
-                Toast.makeText(this, "You clicked settings", Toast.LENGTH_SHORT).show();
+                intent = new Intent(getApplicationContext(), UpdateUserInfoActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.menuLogout:
-                Toast.makeText(this, "You clicked logout", Toast.LENGTH_SHORT).show();
+                intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+                finish();
                 break;
 
         }

@@ -6,7 +6,7 @@
     <string name="prompt_password">Password</string>
     <string name="prompt_creationDate">Data Creazione</string>
     <string name="action_sign_in">Sign in or register</string>
-    <string name="action_register">Register</string>
+    <string name="btn_register">Registra</string>
     <string name="action_sign_in_short">Accedi</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
@@ -15,6 +15,7 @@
     <string name="account_description">"Descrizione"</string>
     <string name="account_type">"Tipo"</string>
     <string name="btn_add">"Aggiungi"</string>
+    <string name="btn_update">"Modifica"</string>
     <string name="btn_copy">"Copia"</string>
     <string name="txt_copied">"Copiato negli appunti"</string>
     <string name="account_desc_title">"Descrizione Account"</string>
@@ -23,4 +24,5 @@
     <string name="about_menu_item">"About"</string>
     <string name="settings_menu_item">Dati personali</string>
     <string name="logout_menu_item">Esci</string>
+    <string name="user_info_title">Dati Registrazione</string>
 </resources>

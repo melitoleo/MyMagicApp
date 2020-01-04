@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".TypeActivity"></activity>
+        <activity android:name=".UpdateUserInfoActivity"></activity>
+        <activity android:name=".TypeActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".AccountDescription" />
         <activity android:name=".AddAccountActivity" />

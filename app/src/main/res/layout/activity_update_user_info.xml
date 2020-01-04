@@ -4,10 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistrationActivity">
+    tools:context=".UpdateUserInfoActivity">
+
+    <include
+        android:id="@+id/tlb_main"
+        layout="@layout/tool_bar">
+    </include>
 
     <EditText
-        android:id="@+id/txtName"
+        android:id="@+id/txtUpdateName"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
@@ -17,10 +22,10 @@
         android:inputType="textPersonName|text|textCapSentences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/tlb_main"  />
 
     <EditText
-        android:id="@+id/txtSurname"
+        android:id="@+id/txtUpdateSurname"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
@@ -30,10 +35,10 @@
         android:inputType="textPersonName|text|textCapSentences"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUpdateName" />
 
     <EditText
-        android:id="@+id/txtMail"
+        android:id="@+id/txtUpdateMail"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
@@ -43,10 +48,10 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtSurname" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUpdateSurname" />
 
     <EditText
-        android:id="@+id/txtUsername"
+        android:id="@+id/txtUpdateUsername"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
@@ -56,10 +61,10 @@
         android:inputType="textPersonName|text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtMail" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUpdateMail" />
 
     <EditText
-        android:id="@+id/txtPassword"
+        android:id="@+id/txtUpdatePassword"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"
@@ -69,10 +74,10 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUpdateUsername" />
 
     <Button
-        android:id="@+id/btnRegistration"
+        android:id="@+id/btnUpdateUserInfo"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_margin="85dp"
@@ -80,10 +85,10 @@
         android:layout_marginTop="160dp"
         android:layout_marginEnd="84dp"
         android:layout_marginBottom="229dp"
-        android:text="@string/btn_register"
+        android:text="@string/btn_update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUpdatePassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
