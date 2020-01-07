@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
         if(existUserIsEmpty) {
             Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
             startActivity(intent);
+            finish();
         }else{
             LoginUser(database);
         }

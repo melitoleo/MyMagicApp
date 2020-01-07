@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menuSettings:
                 intent = new Intent(getApplicationContext(), UpdateUserInfoActivity.class);
                 startActivity(intent);
+                finish();
                 break;
 
             case R.id.menuLogout:

@@ -39,6 +39,7 @@ public class AccountActivity extends AppCompatActivity {
                 Intent intent = new Intent(view.getContext(), AddAccountActivity.class);
                 intent.putExtra("type",type);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -56,6 +57,7 @@ public class AccountActivity extends AppCompatActivity {
                     Intent intent = new Intent(view.getContext(),AccountDescription.class);
                     intent.putExtra("accountId", item.id);
                     startActivity(intent);
+                    finish();
                 }
             });
 
