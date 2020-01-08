@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -26,6 +28,11 @@ import java.util.Locale;
 
 public class AddAccountActivity extends AppCompatActivity {
 
+    private TextInputEditText txtDescription;
+    private TextInputEditText txtPassword;
+    private TextInputEditText txtUsername;
+    private TextView txtAddPwStrength;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +52,30 @@ public class AddAccountActivity extends AppCompatActivity {
         TextView txtType =  findViewById(R.id.txtAddType);
         txtType.setText(type);
         
-        final TextInputEditText txtDescription = findViewById(R.id.txtAccountDescription);
-        final TextInputEditText txtPassword = findViewById(R.id.txtAccountPassword);
-        final TextInputEditText txtUsername = findViewById(R.id.txtAccountUsername);
+        txtDescription = findViewById(R.id.txtAccountDescription);
+        txtPassword = findViewById(R.id.txtAccountPassword);
+        txtUsername = findViewById(R.id.txtAccountUsername);
+        txtAddPwStrength = findViewById(R.id.txtAddPwStrength);
 
         final User user = database.userDao().getAll().get(0);
 
         final String password = security.Decrypt(user.password, user.password);
+
+        txtPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calculatePasswordStrength(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+
+        });
 
         btnAddAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,5 +105,14 @@ public class AddAccountActivity extends AppCompatActivity {
         long millis=System.currentTimeMillis();
         final Date date=new Date(millis);
         return dataFormat.format(date);
+    }
+
+    private void calculatePasswordStrength(String str) {
+        // Now, we need to define a PasswordStrength enum
+        // with a calculate static method returning the password strength
+        PasswordStrength passwordStrength = PasswordStrength.calculate(str);
+        txtAddPwStrength.setText(passwordStrength.msg);
+        txtAddPwStrength.setTextColor(passwordStrength.color);
+        //root.setBackgroundColor(passwordStrength.color);
     }
 }
