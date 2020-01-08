@@ -17,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="76dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/border_bottom"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,6 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/border_bottom"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -137,6 +139,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/border_bottom"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -197,6 +200,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/border_bottom"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -276,6 +280,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/border_bottom"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -329,4 +334,14 @@
                 app:srcCompat="@drawable/ic_date_range_black_24dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnOpenUpdateAccount"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/btn_update"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llDate" />
 </androidx.constraintlayout.widget.ConstraintLayout>

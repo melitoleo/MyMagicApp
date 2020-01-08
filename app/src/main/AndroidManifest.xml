@@ -9,22 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".UpdateUserInfoActivity"></activity>
-        <activity android:name=".TypeActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".AccountDescription" />
-        <activity android:name=".AddAccountActivity" />
-        <activity android:name=".AccountActivity" />
-        <activity android:name=".RegistrationActivity" />
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/app_name">
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".UpdateAccountActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".UpdateUserInfoActivity" />
+        <activity android:name=".TypeActivity" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".AccountDescription" />
+        <activity android:name=".AddAccountActivity" />
+        <activity android:name=".AccountActivity" />
+        <activity android:name=".RegistrationActivity" />
     </application>
 
 </manifest>

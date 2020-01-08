@@ -3,8 +3,6 @@ package com.example.mymagicapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.ClipData;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -12,31 +10,28 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.ImageButton;
 import android.widget.TextView;
-import android.content.ClipboardManager;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.mymagicapp.dao.AccountDatabase;
 import com.example.mymagicapp.domain.Account;
 import com.example.mymagicapp.domain.User;
+import com.google.android.material.textfield.TextInputEditText;
 
-public class AccountDescription extends AppCompatActivity {
+public class UpdateAccountActivity extends AppCompatActivity {
 
-    private TextView txtDescription;
-    private TextView txtType;
+    private TextInputEditText txtDescription;
+    private TextInputEditText txtType;
     private TextView txtUsername;
     private TextView txtCreationDate;
     private TextView txtPassword;
     private ToggleButton tglBtnPassword;
-    private ImageButton btnCopy;
-    private Button btnOpenUpdateAccount;
+    private Button btnUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account_description);
+        setContentView(R.layout.activity_update_account);
 
         final Security security = new Security(getApplicationContext());
 
@@ -44,20 +39,19 @@ public class AccountDescription extends AppCompatActivity {
         final int accountId = b.getInt("accountId");
         final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
 
-        Account account = database.accountDao().findAccount(accountId);
+        final Account account = database.accountDao().findAccount(accountId);
         User user = database.userDao().findUser(account.userId);
 
         Toolbar toolbar = findViewById(R.id.tlb_main);
         ToolBarManager.Setting(getApplicationContext(),toolbar, getString(R.string.account_desc_title), account.type, AccountActivity.class);
 
-        txtDescription = findViewById(R.id.txtViewDescription);
-        txtType = findViewById(R.id.txtViewType);
-        txtUsername = findViewById(R.id.txtViewUsername);
-        txtCreationDate = findViewById(R.id.txtViewDate);
-        txtPassword = findViewById(R.id.txtViewPassword);
-        tglBtnPassword = findViewById(R.id.btnTogglePassword);
-        btnCopy = findViewById(R.id.btnCopy);
-        btnOpenUpdateAccount = findViewById(R.id.btnOpenUpdateAccount);
+        txtDescription = findViewById(R.id.txtUpdateDescription);
+        txtType = findViewById(R.id.txtUpdateType);
+        txtUsername = findViewById(R.id.txtUpdateUsername);
+        txtCreationDate = findViewById(R.id.txtUpdateDate);
+        txtPassword = findViewById(R.id.txtUpdatePassword);
+        tglBtnPassword = findViewById(R.id.btnUpdateTogglePassword);
+        btnUpdate = findViewById(R.id.btnUpdateAccount);
 
         String userPassword = security.Decrypt(user.password,user.password);
         final String accountPassword = security.Decrypt(account.password, userPassword);
@@ -81,21 +75,21 @@ public class AccountDescription extends AppCompatActivity {
             }
         });
 
-        btnCopy.setOnClickListener(new View.OnClickListener() {
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText("myMagicPassword", accountPassword);
-                clipboard.setPrimaryClip(clip);
+                Account updateAccount = new Account();
 
-                Toast.makeText(getApplicationContext(),R.string.txt_copied,Toast.LENGTH_SHORT).show();
-            }
-        });
+                updateAccount.id = accountId;
+                updateAccount.description = txtDescription.getText().toString();
+                updateAccount.type = txtType.getText().toString();
+                updateAccount.username = txtUsername.getText().toString();
+                updateAccount.password = account.password;
+                updateAccount.creationDate = txtCreationDate.getText().toString();
 
-        btnOpenUpdateAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), UpdateAccountActivity.class);
+                database.accountDao().update(updateAccount);
+
+                Intent intent = new Intent(getApplicationContext(),AccountDescription.class);
                 intent.putExtra("accountId", accountId);
                 startActivity(intent);
                 finish();

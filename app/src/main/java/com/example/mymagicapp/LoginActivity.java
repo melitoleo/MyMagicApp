@@ -6,42 +6,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.mymagicapp.dao.AccountDatabase;
 import com.example.mymagicapp.domain.User;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private TextInputEditText username;
+    private TextInputEditText txtPassword;
+    private TextView txtNotFound;
+    private Button btnLogin;
+
+    private AccountDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
-
-        boolean existUserIsEmpty = database.userDao().getAll().isEmpty();
-
-        if(existUserIsEmpty) {
-            Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
-            startActivity(intent);
-            finish();
-        }else{
-            LoginUser(database);
-        }
-    }
-
-    private void LoginUser(final AccountDatabase database) {
-
-        final EditText username = findViewById(R.id.txtLoginUsername);
-        final EditText txtPassword = findViewById(R.id.txtLoginPassword);
-        final TextView txtNotFound = findViewById(R.id.txtNotFound);
-
         final Security security = new Security(getApplicationContext());
 
-        Button btnLogin = findViewById(R.id.btnLogin);
+        database = AccountDatabase.getDatabase(getApplicationContext());
+
+        username = findViewById(R.id.txtLoginUsername);
+        txtPassword = findViewById(R.id.txtLoginPassword);
+        txtNotFound = findViewById(R.id.txtNotFound);
+        btnLogin = findViewById(R.id.btnLogin);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
