@@ -25,4 +25,8 @@
     <string name="settings_menu_item">Dati personali</string>
     <string name="logout_menu_item">Esci</string>
     <string name="user_info_title">Dati Registrazione</string>
+    <string name="weak">"Weak"</string>
+    <string name="medium">Medium</string>
+    <string name="strong">Strong</string>
+    <string name="very_strong">Very Strong</string>
 </resources>
