@@ -40,7 +40,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
         final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
 
         final Account account = database.accountDao().findAccount(accountId);
-        User user = database.userDao().findUser(account.userId);
+        final User user = database.userDao().findUser(account.userId);
 
         Toolbar toolbar = findViewById(R.id.tlb_main);
         ToolBarManager.Setting(getApplicationContext(),toolbar, getString(R.string.account_desc_title), account.type, AccountActivity.class);
@@ -86,6 +86,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
                 updateAccount.username = txtUsername.getText().toString();
                 updateAccount.password = account.password;
                 updateAccount.creationDate = txtCreationDate.getText().toString();
+                updateAccount.userId = account.userId;
 
                 database.accountDao().update(updateAccount);
 
