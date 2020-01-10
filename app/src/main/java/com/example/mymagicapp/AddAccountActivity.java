@@ -111,7 +111,8 @@ public class AddAccountActivity extends AppCompatActivity {
         // Now, we need to define a PasswordStrength enum
         // with a calculate static method returning the password strength
         PasswordStrength passwordStrength = PasswordStrength.calculate(str);
-        txtAddPwStrength.setText(passwordStrength.msg);
+
+        txtAddPwStrength.setText(String.format(getString(R.string.password_strength), getText(passwordStrength.msg)));
         txtAddPwStrength.setTextColor(passwordStrength.color);
         //root.setBackgroundColor(passwordStrength.color);
     }
