@@ -4,6 +4,9 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
+    <string name="prompt_confirm_password">Ripeti Password</string>
+    <string name="prompt_name">Nome</string>
+    <string name="prompt_surname">Cognome</string>
     <string name="prompt_creationDate">Data Creazione</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="btn_register">Registra</string>
@@ -31,4 +34,6 @@
     <string name="very_strong">Molto Forte</string>
     <string name="password_strength">"Robustezza password: %s"</string>
     <string name="password_strength_text">Una password robusta deve avere almeno 8 carateri e contenere una lettera maiuscola un carattere speciale ed almeno un numero</string>
+    <string name="password_ko_check_text">Le password non coincidono</string>
+    <string name="password_ok_check_text">Le password coincidono</string>
 </resources>

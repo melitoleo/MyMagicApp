@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mymagicapp.dao.AccountDatabase;
 import com.example.mymagicapp.domain.Type;
@@ -23,8 +24,9 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText email;
     private EditText username;
     private EditText password;
+    private EditText confirmPassword;
     private TextView txtPwStrength;
-    private View root;
+    private TextView txtPwCheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +40,16 @@ public class RegistrationActivity extends AppCompatActivity {
 
         final String[] defaultTypeDescription = {"Social","Email","a","b","c","d","e"};
 
-        root = findViewById(R.id.root);
         name = findViewById(R.id.txtName);
         surname = findViewById(R.id.txtSurname);
         email = findViewById(R.id.txtMail);
         username = findViewById(R.id.txtUsername);
         password = findViewById(R.id.txtPassword);
+        confirmPassword = findViewById(R.id.txtConfirmPassword);
         txtPwStrength = findViewById(R.id.txtPwStrength);
+        txtPwCheck = findViewById(R.id.txtPwCheck);
+
+        btnRegistration.setEnabled(false);
 
         btnRegistration.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -85,12 +90,44 @@ public class RegistrationActivity extends AppCompatActivity {
             }
 
         });
+
+        confirmPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String pwd = password.getText().toString();
+                String ckPwd = confirmPassword.getText().toString();
+
+                txtPwCheck.setText("");
+                btnRegistration.setEnabled(false);
+
+                if(s.length() >= pwd.length()) {
+                    if (!PasswordCheck(pwd, ckPwd))
+                        txtPwCheck.setText(getString(R.string.password_ko_check_text));
+                    else {
+                        txtPwCheck.setText(getString(R.string.password_ok_check_text));
+                        btnRegistration.setEnabled(true);
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
     private void calculatePasswordStrength(String str) {
-        // Now, we need to define a PasswordStrength enum
-        // with a calculate static method returning the password strength
         PasswordStrength passwordStrength = PasswordStrength.calculate(str);
         txtPwStrength.setText(passwordStrength.msg);
-        root.setBackgroundColor(passwordStrength.color);
+        txtPwStrength.setBackgroundColor(passwordStrength.color);
+    }
+
+    private boolean PasswordCheck(String password, String check){
+        return password.equals(check);
     }
 }
