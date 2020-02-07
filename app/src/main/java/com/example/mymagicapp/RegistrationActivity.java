@@ -1,5 +1,7 @@
 package com.example.mymagicapp;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,6 +19,12 @@ import com.example.mymagicapp.domain.Type;
 import com.example.mymagicapp.domain.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
 public class RegistrationActivity extends AppCompatActivity {
 
     private EditText name;
@@ -27,18 +35,22 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText confirmPassword;
     private TextView txtPwStrength;
     private TextView txtPwCheck;
+    private Button btnRegistration;
+
+    private Security security;
+    private AccountDatabase database;
+
+    private String[] defaultTypeDescription = {"Social","Email","a","b","c","d","e"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
-        final Button btnRegistration = findViewById(R.id.btnRegistration);
-        final Security security = new Security(getApplicationContext());
+        btnRegistration = findViewById(R.id.btnRegistration);
 
-        final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
-
-        final String[] defaultTypeDescription = {"Social","Email","a","b","c","d","e"};
+        security = new Security(getApplicationContext());
+        database = AccountDatabase.getDatabase(getApplicationContext());
 
         name = findViewById(R.id.txtName);
         surname = findViewById(R.id.txtSurname);
@@ -53,25 +65,13 @@ public class RegistrationActivity extends AppCompatActivity {
 
         btnRegistration.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                User user = new User();
+                List<EditText> fieldsCheck = new ArrayList<>();
 
-                user.name = name.getText().toString();
-                user.surname = surname.getText().toString();
-                user.email = email.getText().toString();
-                user.username = username.getText().toString();
-                user.password = security.Encrypt(password.getText().toString(),password.getText().toString());
+                fieldsCheck.add(name);
+                fieldsCheck.add(username);
 
-                database.userDao().insert(user);
-
-                for (String description: defaultTypeDescription) {
-                    Type type = new Type();
-                    type.description = description;
-                    database.typeDao().insert(type);
-                }
-
-                Intent intent = new Intent(view.getContext(), LoginActivity.class);
-                startActivity(intent);
-                finish();
+                if(!CheckFieldRequired(fieldsCheck))
+                    AddUser(view);
             }
         });
 
@@ -121,10 +121,45 @@ public class RegistrationActivity extends AppCompatActivity {
             }
         });
     }
+
+    private boolean CheckFieldRequired(List<EditText> fields){
+        int check = 0;
+
+        for (EditText field:fields) {
+            if(field.getText().toString().trim().isEmpty()) {
+                field.setError(getString(R.string.required));
+                check++;
+            }
+        }
+        return check > 0;
+    }
+
+    private void AddUser(View view) {
+        User user = new User();
+
+        user.name = name.getText().toString();
+        user.surname = surname.getText().toString();
+        user.email = email.getText().toString();
+        user.username = username.getText().toString();
+        user.password = security.Encrypt(password.getText().toString(),password.getText().toString());
+
+        database.userDao().insert(user);
+
+        for (String description: defaultTypeDescription) {
+            Type type = new Type();
+            type.description = description;
+            database.typeDao().insert(type);
+        }
+
+        Intent intent = new Intent(view.getContext(), LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     private void calculatePasswordStrength(String str) {
         PasswordStrength passwordStrength = PasswordStrength.calculate(str);
         txtPwStrength.setText(passwordStrength.msg);
-        txtPwStrength.setBackgroundColor(passwordStrength.color);
+        txtPwStrength.setTextColor(passwordStrength.color);
     }
 
     private boolean PasswordCheck(String password, String check){
