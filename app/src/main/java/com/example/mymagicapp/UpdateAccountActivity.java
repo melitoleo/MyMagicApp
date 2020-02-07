@@ -10,6 +10,7 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -18,15 +19,20 @@ import com.example.mymagicapp.domain.Account;
 import com.example.mymagicapp.domain.User;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UpdateAccountActivity extends AppCompatActivity {
 
     private TextInputEditText txtDescription;
     private TextInputEditText txtType;
-    private TextView txtUsername;
+    private TextInputEditText txtUsername;
     private TextView txtCreationDate;
-    private TextView txtPassword;
+    private TextInputEditText txtPassword;
     private ToggleButton tglBtnPassword;
     private Button btnUpdate;
+
+    private AccountDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +43,13 @@ public class UpdateAccountActivity extends AppCompatActivity {
 
         Bundle b = getIntent().getExtras();
         final int accountId = b.getInt("accountId");
-        final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
+        database = AccountDatabase.getDatabase(getApplicationContext());
 
         final Account account = database.accountDao().findAccount(accountId);
         final User user = database.userDao().findUser(account.userId);
 
         Toolbar toolbar = findViewById(R.id.tlb_main);
-        ToolBarManager.Setting(getApplicationContext(),toolbar, getString(R.string.account_desc_title), account.type, AccountActivity.class);
+        ToolBarManager.Setting(getApplicationContext(),toolbar, getString(R.string.update_account_title), account.type, AccountActivity.class);
 
         txtDescription = findViewById(R.id.txtUpdateDescription);
         txtType = findViewById(R.id.txtUpdateType);
@@ -78,23 +84,34 @@ public class UpdateAccountActivity extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Account updateAccount = new Account();
+                List<EditText> fieldsCheck = new ArrayList<>();
 
-                updateAccount.id = accountId;
-                updateAccount.description = txtDescription.getText().toString();
-                updateAccount.type = txtType.getText().toString();
-                updateAccount.username = txtUsername.getText().toString();
-                updateAccount.password = account.password;
-                updateAccount.creationDate = txtCreationDate.getText().toString();
-                updateAccount.userId = account.userId;
+                fieldsCheck.add(txtDescription);
+                fieldsCheck.add(txtUsername);
+                fieldsCheck.add(txtPassword);
 
-                database.accountDao().update(updateAccount);
-
-                Intent intent = new Intent(getApplicationContext(),AccountDescription.class);
-                intent.putExtra("accountId", accountId);
-                startActivity(intent);
-                finish();
+                if(!FieldManager.CheckFieldRequired(getApplicationContext(), fieldsCheck))
+                    updateAccount(accountId, account);
             }
         });
+    }
+
+    private void updateAccount(int accountId, Account account) {
+        Account updateAccount = new Account();
+
+        updateAccount.id = accountId;
+        updateAccount.description = txtDescription.getText().toString();
+        updateAccount.type = txtType.getText().toString();
+        updateAccount.username = txtUsername.getText().toString();
+        updateAccount.password = account.password;
+        updateAccount.creationDate = txtCreationDate.getText().toString();
+        updateAccount.userId = account.userId;
+
+        database.accountDao().update(updateAccount);
+
+        Intent intent = new Intent(getApplicationContext(), AccountDescription.class);
+        intent.putExtra("accountId", accountId);
+        startActivity(intent);
+        finish();
     }
 }

@@ -17,6 +17,9 @@ import android.widget.Toast;
 import com.example.mymagicapp.dao.AccountDatabase;
 import com.example.mymagicapp.domain.Type;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TypeActivity extends AppCompatActivity {
 
     private RecyclerView viewTypeList;
@@ -50,20 +53,29 @@ public class TypeActivity extends AppCompatActivity {
         btnAddType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                description = txtAddType.getText().toString();
+                List<EditText> fieldsCheck = new ArrayList<>();
 
-                if(database.typeDao().typeExist(description))
-                    Toast.makeText(getApplicationContext(), "Tipo già esistente", Toast.LENGTH_LONG).show();
-                else {
-                    Type type = new Type();
-                    type.description=description;
-                    database.typeDao().insert(type);
+                fieldsCheck.add(txtAddType);
 
-                    Intent intent = new Intent(view.getContext(), MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                }
+                if(!FieldManager.CheckFieldRequired(getApplicationContext(), fieldsCheck))
+                    addType(view);
             }
         });
+    }
+
+    private void addType(View view) {
+        description = txtAddType.getText().toString();
+
+        if(database.typeDao().typeExist(description))
+            Toast.makeText(getApplicationContext(), getString(R.string.type_exists), Toast.LENGTH_LONG).show();
+        else {
+            Type type = new Type();
+            type.description = description;
+            database.typeDao().insert(type);
+
+            Intent intent = new Intent(view.getContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

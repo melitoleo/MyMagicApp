@@ -22,6 +22,7 @@
     <string name="btn_copy">"Copia"</string>
     <string name="txt_copied">"Copiato negli appunti"</string>
     <string name="account_desc_title">"Descrizione Account"</string>
+    <string name="update_account_title">"Modifica Account"</string>
     <string name="account_new_title">Nuovo Account: %s</string>
     <string name="type_title">Categoria</string>
     <string name="about_menu_item">"About"</string>
@@ -37,4 +38,5 @@
     <string name="password_ko_check_text">Le password non coincidono</string>
     <string name="password_ok_check_text">Le password coincidono</string>
     <string name="required">Campo richiesto</string>
+    <string name="type_exists">"Tipo già esistente"</string>
 </resources>

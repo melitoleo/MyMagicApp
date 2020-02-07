@@ -70,8 +70,8 @@ public class RegistrationActivity extends AppCompatActivity {
                 fieldsCheck.add(name);
                 fieldsCheck.add(username);
 
-                if(!CheckFieldRequired(fieldsCheck))
-                    AddUser(view);
+                if(!FieldManager.CheckFieldRequired(getApplicationContext(), fieldsCheck))
+                    addUser(view);
             }
         });
 
@@ -122,19 +122,7 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    private boolean CheckFieldRequired(List<EditText> fields){
-        int check = 0;
-
-        for (EditText field:fields) {
-            if(field.getText().toString().trim().isEmpty()) {
-                field.setError(getString(R.string.required));
-                check++;
-            }
-        }
-        return check > 0;
-    }
-
-    private void AddUser(View view) {
+    private void addUser(View view) {
         User user = new User();
 
         user.name = name.getText().toString();

@@ -13,6 +13,9 @@ import com.example.mymagicapp.dao.AccountDatabase;
 import com.example.mymagicapp.domain.Type;
 import com.example.mymagicapp.domain.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class UpdateUserInfoActivity extends AppCompatActivity {
 
     private EditText name;
@@ -20,6 +23,9 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
     private EditText email;
     private EditText username;
     private EditText password;
+
+    private AccountDatabase database;
+    private User userInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +44,9 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
         username = findViewById(R.id.txtUpdateUsername);
         password = findViewById(R.id.txtUpdatePassword);
 
-        final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
+        database = AccountDatabase.getDatabase(getApplicationContext());
 
-        final User userInfo = database.userDao().getAll().get(0);
+        userInfo = database.userDao().getAll().get(0);
 
         name.setText(userInfo.name);
         surname.setText(userInfo.surname);
@@ -50,22 +56,34 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                User user = new User();
+                List<EditText> fieldsCheck = new ArrayList<>();
 
-                user.id = userInfo.id;
-                user.name = name.getText().toString();
-                user.surname = surname.getText().toString();
-                user.email = email.getText().toString();
-                user.username = username.getText().toString();
-                user.password = userInfo.password;
-                //user.password = security.Encrypt(password.getText().toString(),password.getText().toString());
+                fieldsCheck.add(username);
+                fieldsCheck.add(name);
+                fieldsCheck.add(password);
 
-                database.userDao().update(user);
+                if(!FieldManager.CheckFieldRequired(getApplicationContext(), fieldsCheck))
 
-                Intent intent = new Intent(view.getContext(), MainActivity.class);
-                startActivity(intent);
-                finish();
+                updateUser(view);
             }
         });
+    }
+
+    private void updateUser(View view) {
+        User user = new User();
+
+        user.id = userInfo.id;
+        user.name = name.getText().toString();
+        user.surname = surname.getText().toString();
+        user.email = email.getText().toString();
+        user.username = username.getText().toString();
+        user.password = userInfo.password;
+        //user.password = security.Encrypt(password.getText().toString(),password.getText().toString());
+
+        database.userDao().update(user);
+
+        Intent intent = new Intent(view.getContext(), MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

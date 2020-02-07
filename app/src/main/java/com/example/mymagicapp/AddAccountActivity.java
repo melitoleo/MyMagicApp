@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -33,19 +34,24 @@ public class AddAccountActivity extends AppCompatActivity {
     private TextInputEditText txtUsername;
     private TextView txtAddPwStrength;
 
+    private AccountDatabase database;
+    private Security security;
+    private String type;
+    private User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_account);
 
         Bundle b = getIntent().getExtras();
-        final String type = b.getString("type");
+        type = b.getString("type");
 
         Toolbar toolbar = findViewById(R.id.tlb_main);
         ToolBarManager.Setting(getApplicationContext(),toolbar, String.format(getString(R.string.account_new_title), type), type, AccountActivity.class);
 
-        final Security security = new Security(getApplicationContext());
-        final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
+        security = new Security(getApplicationContext());
+        database = AccountDatabase.getDatabase(getApplicationContext());
 
         Button btnAddAccount = findViewById(R.id.btnAddAccount);
 
@@ -57,7 +63,7 @@ public class AddAccountActivity extends AppCompatActivity {
         txtUsername = findViewById(R.id.txtAccountUsername);
         txtAddPwStrength = findViewById(R.id.txtAddPwStrength);
 
-        final User user = database.userDao().getAll().get(0);
+        user = database.userDao().getAll().get(0);
 
         final String password = security.Decrypt(user.password, user.password);
 
@@ -80,23 +86,34 @@ public class AddAccountActivity extends AppCompatActivity {
         btnAddAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Account account = new Account();
-                account.userId = user.id;
-                account.description = txtDescription.getText().toString();
-                account.type = type;
-                account.username = txtUsername.getText().toString();
-                account.password = security.Encrypt(txtPassword.getText().toString(),password);
-                account.creationDate = GetDateFormat();
+                List<EditText> fieldsCheck = new ArrayList<>();
 
-                database.accountDao().insert(account);
+                fieldsCheck.add(txtPassword);
+                fieldsCheck.add(txtUsername);
+                fieldsCheck.add(txtDescription);
 
-                Intent intent = new Intent(view.getContext(), AccountActivity.class);
-                intent.putExtra("userId", user.id);
-                intent.putExtra("type", type);
-                startActivity(intent);
-                finish();
+                if(!FieldManager.CheckFieldRequired(getApplicationContext(), fieldsCheck))
+                    addAccount(view, password);
             }
         });
+    }
+
+    private void addAccount(View view, String password) {
+        Account account = new Account();
+        account.userId = user.id;
+        account.description = txtDescription.getText().toString();
+        account.type = type;
+        account.username = txtUsername.getText().toString();
+        account.password = security.Encrypt(txtPassword.getText().toString(),password);
+        account.creationDate = GetDateFormat();
+
+        database.accountDao().insert(account);
+
+        Intent intent = new Intent(view.getContext(), AccountActivity.class);
+        intent.putExtra("userId", user.id);
+        intent.putExtra("type", type);
+        startActivity(intent);
+        finish();
     }
 
     private String GetDateFormat(){
