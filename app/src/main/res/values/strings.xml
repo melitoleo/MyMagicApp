@@ -4,6 +4,7 @@
     <string name="prompt_email">Email</string>
     <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
+    <string name="prompt_new_password">Nuova Password</string>
     <string name="prompt_confirm_password">Ripeti Password</string>
     <string name="prompt_name">Nome</string>
     <string name="prompt_surname">Cognome</string>

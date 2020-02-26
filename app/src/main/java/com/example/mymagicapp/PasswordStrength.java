@@ -75,4 +75,8 @@ public enum PasswordStrength {
 
         return VERY_STRONG;
     }
+
+    public static boolean PasswordCheck(String password, String check){
+        return password.equals(check);
+    }
 }

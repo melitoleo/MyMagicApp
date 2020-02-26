@@ -106,7 +106,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 btnRegistration.setEnabled(false);
 
                 if(s.length() >= pwd.length()) {
-                    if (!PasswordCheck(pwd, ckPwd))
+                    if (!PasswordStrength.PasswordCheck(pwd, ckPwd))
                         txtPwCheck.setText(getString(R.string.password_ko_check_text));
                     else {
                         txtPwCheck.setText(getString(R.string.password_ok_check_text));
@@ -148,9 +148,5 @@ public class RegistrationActivity extends AppCompatActivity {
         PasswordStrength passwordStrength = PasswordStrength.calculate(str);
         txtPwStrength.setText(passwordStrength.msg);
         txtPwStrength.setTextColor(passwordStrength.color);
-    }
-
-    private boolean PasswordCheck(String password, String check){
-        return password.equals(check);
     }
 }

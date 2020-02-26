@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
@@ -29,8 +31,12 @@ public class UpdateAccountActivity extends AppCompatActivity {
     private TextInputEditText txtUsername;
     private TextView txtCreationDate;
     private TextInputEditText txtPassword;
+    private TextInputEditText txtNewPassword;
+    private TextInputEditText txtConfirmNewPassword;
     private ToggleButton tglBtnPassword;
     private Button btnUpdate;
+    private TextView txtUpdateStrPassword;
+    private TextView txtUpdateCheckPassword;
 
     private AccountDatabase database;
 
@@ -56,8 +62,12 @@ public class UpdateAccountActivity extends AppCompatActivity {
         txtUsername = findViewById(R.id.txtUpdateUsername);
         txtCreationDate = findViewById(R.id.txtUpdateDate);
         txtPassword = findViewById(R.id.txtUpdatePassword);
+        txtNewPassword = findViewById(R.id.txtUpdateNewPassword);
+        txtConfirmNewPassword = findViewById(R.id.txtUpdateRepeatPassword);
         tglBtnPassword = findViewById(R.id.btnUpdateTogglePassword);
         btnUpdate = findViewById(R.id.btnUpdateAccount);
+        txtUpdateStrPassword = findViewById(R.id.txtUpdateStrPassword);
+        txtUpdateCheckPassword = findViewById(R.id.txtUpdateCheckPassword);
 
         String userPassword = security.Decrypt(user.password,user.password);
         final String accountPassword = security.Decrypt(account.password, userPassword);
@@ -81,6 +91,8 @@ public class UpdateAccountActivity extends AppCompatActivity {
             }
         });
 
+        passwordStrength();
+
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +104,56 @@ public class UpdateAccountActivity extends AppCompatActivity {
 
                 if(!FieldManager.CheckFieldRequired(getApplicationContext(), fieldsCheck))
                     updateAccount(accountId, account);
+            }
+        });
+    }
+
+    private void passwordStrength() {
+        txtNewPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                calculatePasswordStrength(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+
+        });
+    }
+
+    private void checkPassword(){
+        txtConfirmNewPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String pwd = txtNewPassword.getText().toString();
+                String ckPwd = txtConfirmNewPassword.getText().toString();
+
+                txtUpdateCheckPassword.setText("");
+                btnUpdate.setEnabled(false);
+
+                if(s.length() >= pwd.length()) {
+                    if (!PasswordStrength.PasswordCheck(pwd, ckPwd))
+                        txtUpdateCheckPassword.setText(getString(R.string.password_ko_check_text));
+                    else {
+                        txtUpdateCheckPassword.setText(getString(R.string.password_ok_check_text));
+                        btnUpdate.setEnabled(true);
+                    }
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
     }
@@ -113,5 +175,11 @@ public class UpdateAccountActivity extends AppCompatActivity {
         intent.putExtra("accountId", accountId);
         startActivity(intent);
         finish();
+    }
+
+    private void calculatePasswordStrength(String str) {
+        PasswordStrength passwordStrength = PasswordStrength.calculate(str);
+        txtUpdateStrPassword.setText(passwordStrength.msg);
+        txtUpdateStrPassword.setTextColor(passwordStrength.color);
     }
 }
