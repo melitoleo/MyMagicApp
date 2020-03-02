@@ -33,7 +33,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -147,7 +147,8 @@
                     android:id="@+id/txtUpdateUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_username" />
+                    android:hint="@string/prompt_username"
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -190,6 +191,7 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/btnUpdateTogglePassword"
@@ -240,23 +242,25 @@
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img4NewPassword"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/txtUpdateStrPassword">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtUpdateNewPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_new_password" />
+                    android:hint="@string/prompt_new_password"
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txtUpdateStrPassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img4NewPassword"
-                app:layout_constraintTop_toBottomOf="@+id/txtIlNewPassword"></TextView>
+                app:layout_constraintTop_toTopOf="parent"></TextView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -294,27 +298,28 @@
                 android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img4NewRepeatPassword"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/txtUpdateCheckPassword">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/txtUpdateRepeatPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_confirm_password" />
+                    android:hint="@string/prompt_confirm_password"
+                    android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/txtUpdateCheckPassword"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/img4NewRepeatPassword"
-                app:layout_constraintTop_toBottomOf="@+id/txtllNewPassword"></TextView>
+                app:layout_constraintTop_toTopOf="parent"></TextView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>

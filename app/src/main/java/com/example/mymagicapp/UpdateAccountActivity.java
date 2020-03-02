@@ -93,6 +93,8 @@ public class UpdateAccountActivity extends AppCompatActivity {
 
         passwordStrength();
 
+        checkPassword();
+
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,6 +181,8 @@ public class UpdateAccountActivity extends AppCompatActivity {
 
     private void calculatePasswordStrength(String str) {
         PasswordStrength passwordStrength = PasswordStrength.calculate(str);
+        String hint = String.format("%s - %s", getString(R.string.prompt_new_password), passwordStrength.msg);
+        txtNewPassword.setHint(hint);
         txtUpdateStrPassword.setText(passwordStrength.msg);
         txtUpdateStrPassword.setTextColor(passwordStrength.color);
     }
