@@ -32,6 +32,7 @@ public class AccountDescription extends AppCompatActivity {
     private ToggleButton tglBtnPassword;
     private ImageButton btnCopy;
     private Button btnOpenUpdateAccount;
+    private Button btnDeleteAccount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class AccountDescription extends AppCompatActivity {
         final int accountId = b.getInt("accountId");
         final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
 
-        Account account = database.accountDao().findAccount(accountId);
+        final Account account = database.accountDao().findAccount(accountId);
         User user = database.userDao().findUser(account.userId);
 
         Toolbar toolbar = findViewById(R.id.tlb_main);
@@ -58,6 +59,7 @@ public class AccountDescription extends AppCompatActivity {
         tglBtnPassword = findViewById(R.id.btnTogglePassword);
         btnCopy = findViewById(R.id.btnCopy);
         btnOpenUpdateAccount = findViewById(R.id.btnOpenUpdateAccount);
+        btnDeleteAccount = findViewById(R.id.btnDeleteAccount);
 
         String userPassword = security.Decrypt(user.password,user.password);
         final String accountPassword = security.Decrypt(account.password, userPassword);
@@ -97,6 +99,16 @@ public class AccountDescription extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), UpdateAccountActivity.class);
                 intent.putExtra("accountId", accountId);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        btnDeleteAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                database.accountDao().delete(account);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
             }
