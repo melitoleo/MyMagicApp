@@ -37,6 +37,9 @@ public class UpdateAccountActivity extends AppCompatActivity {
     private Button btnUpdate;
     private TextView txtUpdateStrPassword;
     private TextView txtUpdateCheckPassword;
+    private String newPassword;
+    private Security security;
+    private String userPassword;
 
     private AccountDatabase database;
 
@@ -45,7 +48,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_account);
 
-        final Security security = new Security(getApplicationContext());
+        security = new Security(getApplicationContext());
 
         Bundle b = getIntent().getExtras();
         final int accountId = b.getInt("accountId");
@@ -69,7 +72,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
         txtUpdateStrPassword = findViewById(R.id.txtUpdateStrPassword);
         txtUpdateCheckPassword = findViewById(R.id.txtUpdateCheckPassword);
 
-        String userPassword = security.Decrypt(user.password,user.password);
+        userPassword = security.Decrypt(user.password,user.password);
         final String accountPassword = security.Decrypt(account.password, userPassword);
 
         txtDescription.setText(account.description);
@@ -118,6 +121,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                btnUpdate.setEnabled(false);
                 calculatePasswordStrength(s.toString());
             }
 
@@ -148,6 +152,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
                         txtUpdateCheckPassword.setText(getString(R.string.password_ko_check_text));
                     else {
                         txtUpdateCheckPassword.setText(getString(R.string.password_ok_check_text));
+                        newPassword = pwd;
                         btnUpdate.setEnabled(true);
                     }
                 }
@@ -167,7 +172,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
         updateAccount.description = txtDescription.getText().toString();
         updateAccount.type = txtType.getText().toString();
         updateAccount.username = txtUsername.getText().toString();
-        updateAccount.password = account.password;
+        updateAccount.password = newPassword.isEmpty() ? account.password : security.Encrypt(newPassword, userPassword) ;
         updateAccount.creationDate = txtCreationDate.getText().toString();
         updateAccount.userId = account.userId;
 
@@ -181,8 +186,6 @@ public class UpdateAccountActivity extends AppCompatActivity {
 
     private void calculatePasswordStrength(String str) {
         PasswordStrength passwordStrength = PasswordStrength.calculate(str);
-        String hint = String.format("%s - %s", getString(R.string.prompt_new_password), passwordStrength.msg);
-        txtNewPassword.setHint(hint);
         txtUpdateStrPassword.setText(passwordStrength.msg);
         txtUpdateStrPassword.setTextColor(passwordStrength.color);
     }
