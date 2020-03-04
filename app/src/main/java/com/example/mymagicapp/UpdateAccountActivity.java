@@ -10,9 +10,12 @@ import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -37,9 +40,10 @@ public class UpdateAccountActivity extends AppCompatActivity {
     private Button btnUpdate;
     private TextView txtUpdateStrPassword;
     private TextView txtUpdateCheckPassword;
-    private String newPassword;
+    private String newPassword = "";
     private Security security;
     private String userPassword;
+    private Spinner spnUpdateType;
 
     private AccountDatabase database;
 
@@ -61,7 +65,8 @@ public class UpdateAccountActivity extends AppCompatActivity {
         ToolBarManager.Setting(getApplicationContext(),toolbar, getString(R.string.update_account_title), account.type, AccountActivity.class);
 
         txtDescription = findViewById(R.id.txtUpdateDescription);
-        txtType = findViewById(R.id.txtUpdateType);
+        //txtType = findViewById(R.id.txtUpdateType);
+        spnUpdateType = findViewById(R.id.spnUpdateType);
         txtUsername = findViewById(R.id.txtUpdateUsername);
         txtCreationDate = findViewById(R.id.txtUpdateDate);
         txtPassword = findViewById(R.id.txtUpdatePassword);
@@ -72,11 +77,20 @@ public class UpdateAccountActivity extends AppCompatActivity {
         txtUpdateStrPassword = findViewById(R.id.txtUpdateStrPassword);
         txtUpdateCheckPassword = findViewById(R.id.txtUpdateCheckPassword);
 
+
+        String[] defaultTypeDescription = getResources().getStringArray(R.array.categories_array);
+
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, defaultTypeDescription);
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnUpdateType.setAdapter(dataAdapter);
+        spnUpdateType.setSelection(dataAdapter.getPosition(account.type));
+
         userPassword = security.Decrypt(user.password,user.password);
         final String accountPassword = security.Decrypt(account.password, userPassword);
 
         txtDescription.setText(account.description);
-        txtType.setText(account.type);
+        //txtType.setText(account.type);
         txtUsername.setText(account.username);
         txtPassword.setText(accountPassword);
         txtCreationDate.setText(account.creationDate);
@@ -170,7 +184,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
 
         updateAccount.id = accountId;
         updateAccount.description = txtDescription.getText().toString();
-        updateAccount.type = txtType.getText().toString();
+        updateAccount.type = spnUpdateType.getSelectedItem().toString();
         updateAccount.username = txtUsername.getText().toString();
         updateAccount.password = newPassword.isEmpty() ? account.password : security.Encrypt(newPassword, userPassword) ;
         updateAccount.creationDate = txtCreationDate.getText().toString();
