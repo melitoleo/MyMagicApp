@@ -1,9 +1,9 @@
 <resources>
-    <string-array name="account_array">
+    <string-array name="categories_array">
         <item>Social</item>
         <item>Email</item>
         <item>Messaggistica</item>
         <item>Privato</item>
-        <item>Altro</item>
+        <item>Varie</item>
     </string-array>
 </resources>

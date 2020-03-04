@@ -40,7 +40,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private Security security;
     private AccountDatabase database;
 
-    private String[] defaultTypeDescription = {"Social","Email","a","b","c","d","e"};
+    private String[] defaultTypeDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,8 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         btnRegistration = findViewById(R.id.btnRegistration);
+
+        defaultTypeDescription = getResources().getStringArray(R.array.categories_array);
 
         security = new Security(getApplicationContext());
         database = AccountDatabase.getDatabase(getApplicationContext());
