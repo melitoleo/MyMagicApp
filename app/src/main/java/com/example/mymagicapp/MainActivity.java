@@ -16,6 +16,7 @@ import android.widget.TableRow;
 import android.widget.Toast;
 
 import com.example.mymagicapp.dao.AccountDatabase;
+import com.example.mymagicapp.domain.Type;
 import com.example.mymagicapp.domain.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -50,18 +51,22 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        List<String> descriptions = database.typeDao().getAllDescription();
+        List<Type> descriptions = database.typeDao().getTypeAggregate();
 
         TableRow row = CreateAndAddRow(tblDescription);
 
-        for(final String description : descriptions){
+        for(final Type desc : descriptions){
 
-            int index = descriptions.indexOf(description);
+            int index = descriptions.indexOf(desc);
             int column = index%2;
+
+            String txtDescription = desc.accountCount == 0
+                    ? desc.description
+                    : String.format("%s - %d", desc.description, desc.accountCount);
 
             Button btnDescription = new Button(this);
             btnDescription.setId(index);
-            btnDescription.setText(description);
+            btnDescription.setText(txtDescription);
             btnDescription.setLayoutParams(new TableRow.LayoutParams(column));
 
             btnDescription.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(view.getContext(),AccountActivity.class);
                     intent.putExtra("userId", user.id);
-                    intent.putExtra("type", description);
+                    intent.putExtra("type", desc.description);
                     startActivity(intent);
                 }
             });
