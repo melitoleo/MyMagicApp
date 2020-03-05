@@ -30,7 +30,6 @@ import java.util.List;
 public class UpdateAccountActivity extends AppCompatActivity {
 
     private TextInputEditText txtDescription;
-    private TextInputEditText txtType;
     private TextInputEditText txtUsername;
     private TextView txtCreationDate;
     private TextInputEditText txtPassword;
@@ -65,7 +64,6 @@ public class UpdateAccountActivity extends AppCompatActivity {
         ToolBarManager.Setting(getApplicationContext(),toolbar, getString(R.string.update_account_title), account.type, AccountActivity.class);
 
         txtDescription = findViewById(R.id.txtUpdateDescription);
-        //txtType = findViewById(R.id.txtUpdateType);
         spnUpdateType = findViewById(R.id.spnUpdateType);
         txtUsername = findViewById(R.id.txtUpdateUsername);
         txtCreationDate = findViewById(R.id.txtUpdateDate);
@@ -77,11 +75,10 @@ public class UpdateAccountActivity extends AppCompatActivity {
         txtUpdateStrPassword = findViewById(R.id.txtUpdateStrPassword);
         txtUpdateCheckPassword = findViewById(R.id.txtUpdateCheckPassword);
 
-
-        String[] defaultTypeDescription = getResources().getStringArray(R.array.categories_array);
+        List<String> descriptions = database.typeDao().getAllDescription();
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, defaultTypeDescription);
+                android.R.layout.simple_spinner_item, descriptions);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnUpdateType.setAdapter(dataAdapter);
         spnUpdateType.setSelection(dataAdapter.getPosition(account.type));
@@ -90,7 +87,6 @@ public class UpdateAccountActivity extends AppCompatActivity {
         final String accountPassword = security.Decrypt(account.password, userPassword);
 
         txtDescription.setText(account.description);
-        //txtType.setText(account.type);
         txtUsername.setText(account.username);
         txtPassword.setText(accountPassword);
         txtCreationDate.setText(account.creationDate);
