@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             Button btnDescription = new Button(this);
             btnDescription.setId(index);
             btnDescription.setText(txtDescription);
-            btnDescription.setLayoutParams(new TableRow.LayoutParams(column));
+            btnDescription.setLayoutParams(new TableRow.LayoutParams(column, 200));
 
             btnDescription.setOnClickListener(new View.OnClickListener() {
                 @Override
