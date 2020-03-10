@@ -19,7 +19,7 @@ public interface TypeDao {
     @Query("SELECT description FROM type ORDER BY description ASC")
     List<String> getAllDescription();
 
-    @Query("SELECT t.id,  t.description AS description, Count(a.type) AS accountCount FROM type t LEFT JOIN account a ON t.description=a.type GROUP BY t.description ORDER BY t.description ASC")
+    @Query("SELECT t.id,  t.description AS description, t.hexcolor AS hexcolor, Count(a.type) AS accountCount FROM type t LEFT JOIN account a ON t.description=a.type GROUP BY t.description ORDER BY t.description ASC")
     List<Type> getTypeAggregate();
 
     @Query("DELETE FROM type WHERE description=:description")

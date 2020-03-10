@@ -43,7 +43,7 @@ public class TypeActivity extends AppCompatActivity {
         btnAddType = findViewById(R.id.btnAddType);
         txtAddType = findViewById(R.id.txtAddType);
 
-        adapter = new DescriptionAdapter(getApplicationContext());
+        adapter = new DescriptionAdapter(getApplicationContext(), this);
 
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         viewTypeList.setLayoutManager(mLayoutManager);

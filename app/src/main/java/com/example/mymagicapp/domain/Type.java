@@ -13,6 +13,9 @@ public class Type {
     @ColumnInfo(name = "description")
     public String description;
 
+    @ColumnInfo(name = "hexcolor")
+    public String hexcolor;
+
     public int accountCount;
 
     public String getDescription() {
@@ -21,5 +24,9 @@ public class Type {
 
     public int getAccountCount() {
         return accountCount;
+    }
+
+    public String getHexcolor(){
+        return hexcolor;
     }
 }

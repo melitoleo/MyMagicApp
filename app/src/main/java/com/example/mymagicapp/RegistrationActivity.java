@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Random;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -138,6 +139,7 @@ public class RegistrationActivity extends AppCompatActivity {
         for (String description: defaultTypeDescription) {
             Type type = new Type();
             type.description = description;
+            type.hexcolor = getRandomHexColor();
             database.typeDao().insert(type);
         }
 
@@ -150,5 +152,11 @@ public class RegistrationActivity extends AppCompatActivity {
         PasswordStrength passwordStrength = PasswordStrength.calculate(str);
         txtPwStrength.setText(passwordStrength.msg);
         txtPwStrength.setTextColor(passwordStrength.color);
+    }
+
+    private String getRandomHexColor(){
+        Random obj = new Random();
+        int rand_num = obj.nextInt(0xffffff + 1);
+        return String.format("#%06x", rand_num);
     }
 }

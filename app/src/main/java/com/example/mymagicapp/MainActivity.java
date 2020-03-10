@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -68,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
             btnDescription.setId(index);
             btnDescription.setText(txtDescription);
             btnDescription.setLayoutParams(new TableRow.LayoutParams(column, 200));
+            btnDescription.setBackgroundColor(Color.parseColor(desc.hexcolor));
 
             btnDescription.setOnClickListener(new View.OnClickListener() {
                 @Override
