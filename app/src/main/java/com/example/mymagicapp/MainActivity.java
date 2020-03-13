@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -65,11 +66,27 @@ public class MainActivity extends AppCompatActivity {
                     ? desc.description
                     : String.format("%s - %d", desc.description, desc.accountCount);
 
+            TableRow.LayoutParams rowParams = new TableRow.LayoutParams(column, 200);
+
+            rowParams.setMargins(8,8,8,8);
+
+            GradientDrawable gdDefault = new GradientDrawable();
+            gdDefault.setColor(Color.parseColor(desc.hexcolor));
+            gdDefault.setCornerRadius(15);
+            gdDefault.setStroke(15, Color.parseColor(desc.hexcolor));
+
             Button btnDescription = new Button(this);
             btnDescription.setId(index);
             btnDescription.setText(txtDescription);
-            btnDescription.setLayoutParams(new TableRow.LayoutParams(column, 200));
-            btnDescription.setBackgroundColor(Color.parseColor(desc.hexcolor));
+            btnDescription.setLayoutParams(rowParams);
+            btnDescription.setBackground(gdDefault);
+            btnDescription.setElevation(15f);
+            btnDescription.setTranslationZ(15f);
+            btnDescription.setZ(30f);
+            btnDescription.setStateListAnimator(null);
+            //btnDescription.setBackgroundColor(Color.parseColor(desc.hexcolor));
+
+
 
             btnDescription.setOnClickListener(new View.OnClickListener() {
                 @Override

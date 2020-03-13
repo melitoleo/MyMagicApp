@@ -7,6 +7,8 @@
     android:background="@color/colorPrimary"
     android:minHeight="?attr/actionBarSize"
     android:theme="?attr/actionBarTheme"
+    app:titleTextColor="@color/text"
+    app:subtitleTextColor="@color/text"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
