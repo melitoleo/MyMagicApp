@@ -70,16 +70,11 @@ public class MainActivity extends AppCompatActivity {
 
             rowParams.setMargins(8,8,8,8);
 
-            GradientDrawable gdDefault = new GradientDrawable();
-            gdDefault.setColor(Color.parseColor(desc.hexcolor));
-            gdDefault.setCornerRadius(15);
-            gdDefault.setStroke(15, Color.parseColor(desc.hexcolor));
-
             Button btnDescription = new Button(this);
             btnDescription.setId(index);
             btnDescription.setText(txtDescription);
             btnDescription.setLayoutParams(rowParams);
-            btnDescription.setBackground(gdDefault);
+            btnDescription.setBackground(Utility.setRounded(desc.hexcolor));
             btnDescription.setElevation(15f);
             btnDescription.setTranslationZ(15f);
             btnDescription.setZ(30f);

@@ -28,6 +28,9 @@ public interface TypeDao {
     @Query("SELECT CAST(COUNT(1) AS BIT) FROM Type t WHERE t.description=:description")
     Boolean typeExist(String description);
 
+    @Query("SELECT t.hexcolor FROM type t WHERE t.description=:description")
+    String getHexColorByDescription(String description);
+
     @Insert
     void insert(Type type);
 

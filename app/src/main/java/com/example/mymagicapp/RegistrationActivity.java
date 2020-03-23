@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -157,6 +158,12 @@ public class RegistrationActivity extends AppCompatActivity {
     private String getRandomHexColor(){
         Random obj = new Random();
         int rand_num = obj.nextInt(0xffffff + 1);
-        return String.format("#%06x", rand_num);
+
+        String hexColor = String.format("#%06x", rand_num);
+
+        if(hexColor == "#006494")
+            getRandomHexColor();
+
+        return hexColor;
     }
 }

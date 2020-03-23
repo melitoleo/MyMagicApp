@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -45,11 +47,24 @@ public class AccountActivity extends AppCompatActivity {
 
         List<Account> userAccount = database.accountDao().findUserAccountByType(type);
 
+        String hexColor = database.typeDao().getHexColorByDescription(type);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                200
+        );
+        params.setMargins(8, 8, 8, 8);
+
         for(final Account item : userAccount){
             Button btnAccount = new Button(this);
             btnAccount.setText(item.description);
-            btnAccount.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT));
+            btnAccount.setLayoutParams(params);
+            btnAccount.setBackground(Utility.setRounded(hexColor));
+            btnAccount.setElevation(15f);
+            btnAccount.setTranslationZ(15f);
+            btnAccount.setZ(30f);
+            btnAccount.setTop(8);
+            btnAccount.setBottom(8);
 
             btnAccount.setOnClickListener(new View.OnClickListener() {
                 @Override
