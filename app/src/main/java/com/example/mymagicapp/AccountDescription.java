@@ -59,6 +59,9 @@ public class AccountDescription extends AppCompatActivity {
         btnOpenUpdateAccount = findViewById(R.id.btnOpenUpdateAccount);
         btnDeleteAccount = findViewById(R.id.btnDeleteAccount);
 
+        Utility.setApplicationButton(this, btnDeleteAccount);
+        Utility.setApplicationButton(this, btnOpenUpdateAccount);
+
         String userPassword = security.Decrypt(user.password,user.password);
         final String accountPassword = security.Decrypt(account.password, userPassword);
 

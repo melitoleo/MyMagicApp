@@ -75,6 +75,8 @@ public class UpdateAccountActivity extends AppCompatActivity {
         txtUpdateStrPassword = findViewById(R.id.txtUpdateStrPassword);
         txtUpdateCheckPassword = findViewById(R.id.txtUpdateCheckPassword);
 
+        Utility.setApplicationButton(this, btnUpdate);
+
         List<String> descriptions = database.typeDao().getAllDescription();
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,

@@ -54,6 +54,8 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
         username.setText(userInfo.username);
         password.setText(userInfo.password);
 
+        Utility.setApplicationButton(this, btnUpdate);
+
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 List<EditText> fieldsCheck = new ArrayList<>();

@@ -79,9 +79,6 @@ public class MainActivity extends AppCompatActivity {
             btnDescription.setTranslationZ(15f);
             btnDescription.setZ(30f);
             btnDescription.setStateListAnimator(null);
-            //btnDescription.setBackgroundColor(Color.parseColor(desc.hexcolor));
-
-
 
             btnDescription.setOnClickListener(new View.OnClickListener() {
                 @Override

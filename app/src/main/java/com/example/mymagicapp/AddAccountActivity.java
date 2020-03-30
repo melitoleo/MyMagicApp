@@ -63,6 +63,8 @@ public class AddAccountActivity extends AppCompatActivity {
         txtUsername = findViewById(R.id.txtAccountUsername);
         txtAddPwStrength = findViewById(R.id.txtAddPwStrength);
 
+        Utility.setApplicationButton(this, btnAddAccount);
+
         user = database.userDao().getAll().get(0);
 
         final String password = security.Decrypt(user.password, user.password);

@@ -135,6 +135,8 @@ public class RegistrationActivity extends AppCompatActivity {
         user.username = username.getText().toString();
         user.password = security.Encrypt(password.getText().toString(),password.getText().toString());
 
+        Utility.setApplicationButton(this, btnRegistration);
+
         database.userDao().insert(user);
 
         for (String description: defaultTypeDescription) {

@@ -3,6 +3,7 @@ package com.example.mymagicapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         txtPassword = findViewById(R.id.txtLoginPassword);
         txtNotFound = findViewById(R.id.txtNotFound);
         btnLogin = findViewById(R.id.btnLogin);
+
+        Utility.setApplicationButton(this, btnLogin);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
