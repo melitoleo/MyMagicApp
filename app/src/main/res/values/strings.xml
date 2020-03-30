@@ -23,7 +23,7 @@
     <string name="btn_copy">"Copia"</string>
     <string name="btn_delete">"Elimina"</string>
     <string name="txt_copied">"Copiato negli appunti"</string>
-    <string name="account_desc_title">"Descrizione Account"</string>
+    <string name="account_desc_title">"Account: %s"</string>
     <string name="update_account_title">"Modifica Account"</string>
     <string name="account_new_title">Nuovo Account: %s</string>
     <string name="type_title">Categoria</string>

@@ -12,339 +12,285 @@
         tools:layout_editor_absoluteX="25dp"
         tools:layout_editor_absoluteY="16dp"></include>
 
-    <LinearLayout
-        android:id="@+id/llType"
+    <ScrollView
+        android:id="@+id/swAccountDescription"
         android:layout_width="match_parent"
-        android:layout_height="76dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tlb_main">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtLblType"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:text="@string/account_type"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txtViewType"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/txtViewType"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="16dp"
-                android:gravity="center_vertical"
-                android:textAlignment="gravity"
-                android:textSize="24sp"
-                android:background="@drawable/border_bottom"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/img4Type"
-                app:layout_constraintTop_toBottomOf="@+id/txtLblType" />
-
-            <ImageView
-                android:id="@+id/img4Type"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/txtLblType"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/type" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llType">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/txtLblDescription"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:text="@string/account_description"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txtViewDescription"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/txtViewDescription"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="16dp"
-                android:gravity="center_vertical"
-                android:textAlignment="gravity"
-                android:textSize="24sp"
-                android:background="@drawable/border_bottom"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/img4Description"
-                app:layout_constraintTop_toBottomOf="@+id/txtLblDescription" />
-
-            <ImageView
-                android:id="@+id/img4Description"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/txtLblDescription"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/description" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llUsername"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llDescription">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/txtLblUsername"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:text="@string/prompt_username"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txtViewUsername"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/txtViewUsername"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="16dp"
-                android:gravity="center_vertical"
-                android:textAlignment="gravity"
-                android:textSize="24sp"
-                android:background="@drawable/border_bottom"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/img4Username"
-                app:layout_constraintTop_toBottomOf="@+id/txtLblUsername" />
-
-            <ImageView
-                android:id="@+id/img4Username"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/txtLblUsername"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/user" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/llPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llUsername">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/txtLblPassword"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="60dp"
-                android:gravity="center_vertical"
-                android:text="@string/prompt_password"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.50"
-                app:layout_constraintStart_toStartOf="@+id/txtViewPassword"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <TextView
-                android:id="@+id/txtViewPassword"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="60dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/border_bottom"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btnTogglePassword"
-                app:layout_constraintTop_toBottomOf="@+id/txtLblPassword" />
-
-
-            <ToggleButton
-                android:id="@+id/btnTogglePassword"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/toggle_selector"
-                android:checked="false"
-                android:text="ToggleButton"
-                android:textOff=""
-                android:textOn=""
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/txtLblPassword"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageButton
-                android:id="@+id/btnCopy"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="8dp"
+            <LinearLayout
+                android:id="@+id/llType"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
-                android:background="#00FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/txtViewPassword"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_content_copy_black_24dp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/llDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llPassword">
+                    <TextView
+                        android:id="@+id/txtLblType"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/account_type"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/txtViewType"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+                    <TextView
+                        android:id="@+id/txtViewType"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/border_bottom"
+                        android:gravity="center_vertical"
+                        android:textAlignment="gravity"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/img4Type"
+                        app:layout_constraintTop_toBottomOf="@+id/txtLblType" />
 
-            <TextView
-                android:id="@+id/txtLblDate"
-                android:layout_width="0dp"
-                android:layout_height="20dp"
+                    <ImageView
+                        android:id="@+id/img4Type"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/txtLblType"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/type" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llUsername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:gravity="center_vertical"
-                android:text="@string/prompt_creationDate"
-                android:textAllCaps="false"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txtViewDate"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/txtViewDate"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginBottom="16dp"
-                android:gravity="center_vertical"
-                android:textAlignment="gravity"
-                android:textSize="24sp"
-                android:background="@drawable/border_bottom"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/img4Date"
-                app:layout_constraintTop_toBottomOf="@+id/txtLblDate" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/img4Date"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="16dp"
+                    <TextView
+                        android:id="@+id/txtLblUsername"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/prompt_username"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/txtViewUsername"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/txtViewUsername"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/border_bottom"
+                        android:gravity="center_vertical"
+                        android:textAlignment="gravity"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/img4Username"
+                        app:layout_constraintTop_toBottomOf="@+id/txtLblUsername" />
+
+                    <ImageView
+                        android:id="@+id/img4Username"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/txtLblUsername"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/user" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/txtLblDate"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_date_range_black_24dp" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txtLblPassword"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="60dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/prompt_password"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.50"
+                        app:layout_constraintStart_toStartOf="@+id/txtViewPassword"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/txtViewPassword"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="60dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/border_bottom"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/btnTogglePassword"
+                        app:layout_constraintTop_toBottomOf="@+id/txtLblPassword" />
+
+
+                    <ToggleButton
+                        android:id="@+id/btnTogglePassword"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/toggle_selector"
+                        android:checked="false"
+                        android:text="ToggleButton"
+                        android:textOff=""
+                        android:textOn=""
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/txtLblPassword"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageButton
+                        android:id="@+id/btnCopy"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="#00FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/txtViewPassword"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_content_copy_black_24dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txtLblDate"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/prompt_creationDate"
+                        android:textAllCaps="false"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/txtViewDate"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/txtViewDate"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/border_bottom"
+                        android:gravity="center_vertical"
+                        android:textAlignment="gravity"
+                        android:textSize="24sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/img4Date"
+                        app:layout_constraintTop_toBottomOf="@+id/txtLblDate" />
+
+                    <ImageView
+                        android:id="@+id/img4Date"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/txtLblDate"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/ic_date_range_black_24dp" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/btnOpenUpdateAccount"
         android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="@string/btn_update"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/llDate" />
+        app:layout_constraintTop_toBottomOf="@+id/swAccountDescription" />
 
     <Button
         android:id="@+id/btnDeleteAccount"

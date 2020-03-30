@@ -49,7 +49,7 @@ public class AccountDescription extends AppCompatActivity {
         User user = database.userDao().findUser(account.userId);
 
         Toolbar toolbar = findViewById(R.id.tlb_main);
-        ToolBarManager.Setting(getApplicationContext(),toolbar, getString(R.string.account_desc_title), account.type, AccountActivity.class);
+        ToolBarManager.Setting(getApplicationContext(),toolbar, String.format(getString(R.string.account_desc_title), account.description), account.type, AccountActivity.class);
 
         txtDescription = findViewById(R.id.txtViewDescription);
         txtType = findViewById(R.id.txtViewType);
