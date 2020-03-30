@@ -24,7 +24,6 @@ import com.example.mymagicapp.domain.User;
 
 public class AccountDescription extends AppCompatActivity {
 
-    private TextView txtDescription;
     private TextView txtType;
     private TextView txtUsername;
     private TextView txtCreationDate;
@@ -51,7 +50,6 @@ public class AccountDescription extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.tlb_main);
         ToolBarManager.Setting(getApplicationContext(),toolbar, String.format(getString(R.string.account_desc_title), account.description), account.type, AccountActivity.class);
 
-        txtDescription = findViewById(R.id.txtViewDescription);
         txtType = findViewById(R.id.txtViewType);
         txtUsername = findViewById(R.id.txtViewUsername);
         txtCreationDate = findViewById(R.id.txtViewDate);
@@ -64,7 +62,6 @@ public class AccountDescription extends AppCompatActivity {
         String userPassword = security.Decrypt(user.password,user.password);
         final String accountPassword = security.Decrypt(account.password, userPassword);
 
-        txtDescription.setText(account.description);
         txtType.setText(account.type);
         txtUsername.setText(account.username);
         txtPassword.setText(accountPassword);
