@@ -9,5 +9,10 @@
         <item name="android:itemBackground">@color/colorBackground</item>
         <item name="android:textColor">@color/colorPrimary</item>
         <item name="android:windowActionBarOverlay">true</item>
+        <item name="actionOverflowButtonStyle">@style/MyOverflowButtonStyle</item>
+    </style>
+
+    <style name="MyOverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/colorText</item>
     </style>
 </resources>

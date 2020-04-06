@@ -50,6 +50,8 @@ public class TypeActivity extends AppCompatActivity {
         viewTypeList.setItemAnimator(new DefaultItemAnimator());
         viewTypeList.setAdapter(adapter);
 
+        Utility.setApplicationImgButton(this, btnAddType);
+
         btnAddType.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,6 +73,7 @@ public class TypeActivity extends AppCompatActivity {
         else {
             Type type = new Type();
             type.description = description;
+            type.hexcolor = Utility.getRandomHexColor();
             database.typeDao().insert(type);
 
             Intent intent = new Intent(view.getContext(), MainActivity.class);

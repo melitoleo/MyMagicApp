@@ -41,6 +41,8 @@ public class DescriptionAdapter extends RecyclerView.Adapter<DescriptionAdapter.
             accountCount = view.findViewById(R.id.txtAccountRowCount);
             btnOpenColorPicker = view.findViewById(R.id.btnOpenColorPicker);
             btnRemoveType = view.findViewById(R.id.btnRemoveType);
+
+            Utility.setApplicationImgButton(view.getContext(), btnRemoveType);
         }
     }
 

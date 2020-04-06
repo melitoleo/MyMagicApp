@@ -65,6 +65,8 @@ public class RegistrationActivity extends AppCompatActivity {
         txtPwStrength = findViewById(R.id.txtPwStrength);
         txtPwCheck = findViewById(R.id.txtPwCheck);
 
+        Utility.setApplicationButton(this, btnRegistration);
+
         btnRegistration.setEnabled(false);
 
         btnRegistration.setOnClickListener(new View.OnClickListener() {
@@ -142,7 +144,7 @@ public class RegistrationActivity extends AppCompatActivity {
         for (String description: defaultTypeDescription) {
             Type type = new Type();
             type.description = description;
-            type.hexcolor = getRandomHexColor();
+            type.hexcolor = Utility.getRandomHexColor();
             database.typeDao().insert(type);
         }
 
@@ -155,17 +157,5 @@ public class RegistrationActivity extends AppCompatActivity {
         PasswordStrength passwordStrength = PasswordStrength.calculate(str);
         txtPwStrength.setText(passwordStrength.msg);
         txtPwStrength.setTextColor(passwordStrength.color);
-    }
-
-    private String getRandomHexColor(){
-        Random obj = new Random();
-        int rand_num = obj.nextInt(0xffffff + 1);
-
-        String hexColor = String.format("#%06x", rand_num);
-
-        if(hexColor == "#006494")
-            getRandomHexColor();
-
-        return hexColor;
     }
 }

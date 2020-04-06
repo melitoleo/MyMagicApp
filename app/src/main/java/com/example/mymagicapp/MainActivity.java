@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
             Button btnDescription = new Button(this);
             btnDescription.setId(index);
             btnDescription.setText(txtDescription);
+            btnDescription.setTextColor(Color.parseColor(getString(R.string.colorText_text)));
             btnDescription.setLayoutParams(rowParams);
             btnDescription.setBackground(Utility.setRounded(desc.hexcolor));
             btnDescription.setElevation(15f);
