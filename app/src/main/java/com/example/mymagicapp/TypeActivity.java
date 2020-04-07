@@ -50,7 +50,7 @@ public class TypeActivity extends AppCompatActivity {
         viewTypeList.setItemAnimator(new DefaultItemAnimator());
         viewTypeList.setAdapter(adapter);
 
-        Utility.setApplicationImgButton(this, btnAddType);
+        Utility.setApplicationImgButton(btnAddType,getString(R.string.colorPrimary_text));
 
         btnAddType.setOnClickListener(new View.OnClickListener() {
             @Override

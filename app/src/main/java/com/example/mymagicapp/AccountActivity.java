@@ -58,6 +58,7 @@ public class AccountActivity extends AppCompatActivity {
         for(final Account item : userAccount){
             Button btnAccount = new Button(this);
             btnAccount.setText(item.description);
+            btnAccount.setTextColor(Color.parseColor(getString(R.string.colorText_text)));
             btnAccount.setLayoutParams(params);
             btnAccount.setBackground(Utility.setRounded(hexColor));
             btnAccount.setElevation(15f);

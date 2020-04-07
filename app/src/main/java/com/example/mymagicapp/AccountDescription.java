@@ -9,6 +9,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -30,8 +33,9 @@ public class AccountDescription extends AppCompatActivity {
     private TextView txtPassword;
     private ToggleButton tglBtnPassword;
     private ImageButton btnCopy;
-    private Button btnOpenUpdateAccount;
-    private Button btnDeleteAccount;
+    private int accountId;
+    private AccountDatabase database;
+    private Account account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +45,27 @@ public class AccountDescription extends AppCompatActivity {
         final Security security = new Security(getApplicationContext());
 
         Bundle b = getIntent().getExtras();
-        final int accountId = b.getInt("accountId");
-        final AccountDatabase database = AccountDatabase.getDatabase(getApplicationContext());
+        accountId = b.getInt("accountId");
 
-        final Account account = database.accountDao().findAccount(accountId);
+        database = AccountDatabase.getDatabase(getApplicationContext());
+
+        account = database.accountDao().findAccount(accountId);
         User user = database.userDao().findUser(account.userId);
 
         Toolbar toolbar = findViewById(R.id.tlb_main);
-        ToolBarManager.Setting(getApplicationContext(),toolbar, String.format(getString(R.string.account_desc_title), account.description), account.type, AccountActivity.class);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(String.format(getString(R.string.account_desc_title), account.description));
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AccountActivity.class);
+                intent.putExtra("type", account.type);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         txtType = findViewById(R.id.txtViewType);
         txtUsername = findViewById(R.id.txtViewUsername);
@@ -56,11 +73,6 @@ public class AccountDescription extends AppCompatActivity {
         txtPassword = findViewById(R.id.txtViewPassword);
         tglBtnPassword = findViewById(R.id.btnTogglePassword);
         btnCopy = findViewById(R.id.btnCopy);
-        btnOpenUpdateAccount = findViewById(R.id.btnOpenUpdateAccount);
-        btnDeleteAccount = findViewById(R.id.btnDeleteAccount);
-
-        Utility.setApplicationButton(this, btnDeleteAccount);
-        Utility.setApplicationButton(this, btnOpenUpdateAccount);
 
         String userPassword = security.Decrypt(user.password,user.password);
         final String accountPassword = security.Decrypt(account.password, userPassword);
@@ -93,25 +105,33 @@ public class AccountDescription extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),R.string.txt_copied,Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
-        btnOpenUpdateAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), UpdateAccountActivity.class);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.account_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent;
+        switch(item.getItemId()){
+            case R.id.account_update:
+                intent = new Intent(getApplicationContext(), UpdateAccountActivity.class);
                 intent.putExtra("accountId", accountId);
                 startActivity(intent);
                 finish();
-            }
-        });
+                break;
 
-        btnDeleteAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            case R.id.account_delete:
                 database.accountDao().delete(account);
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
-            }
-        });
+                break;
+        }
+        return true;
     }
 }

@@ -31,8 +31,7 @@ public class Utility {
             button.setBackground(gdDefault);
         }
 
-    public static void setApplicationImgButton(Context context, ImageButton button){
-        String hexColor = context.getString(R.string.colorPrimary_text);
+    public static void setApplicationImgButton(ImageButton button, String hexColor){
 
         GradientDrawable gdDefault = new GradientDrawable();
         gdDefault.setColor(Color.parseColor(hexColor));

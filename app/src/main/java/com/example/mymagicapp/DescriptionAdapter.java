@@ -42,7 +42,7 @@ public class DescriptionAdapter extends RecyclerView.Adapter<DescriptionAdapter.
             btnOpenColorPicker = view.findViewById(R.id.btnOpenColorPicker);
             btnRemoveType = view.findViewById(R.id.btnRemoveType);
 
-            Utility.setApplicationImgButton(view.getContext(), btnRemoveType);
+            Utility.setApplicationImgButton(btnRemoveType, context.getString(R.string.colorPrimary_text));
         }
     }
 
@@ -67,8 +67,9 @@ public class DescriptionAdapter extends RecyclerView.Adapter<DescriptionAdapter.
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Type type = typeList.get(position);
         holder.typeDescription.setText(type.getDescription());
-        holder.btnOpenColorPicker.setBackgroundColor(Color.parseColor(type.getHexcolor()));
         holder.accountCount.setText(String.format("Account associati: %s", String.valueOf(type.getAccountCount())));
+
+        Utility.setApplicationImgButton(holder.btnOpenColorPicker, type.getHexcolor());
 
         holder.btnRemoveType.setOnClickListener(new View.OnClickListener() {
             @Override
