@@ -16,9 +16,7 @@ public class Security {
 
     public String Encrypt(String valueToEnc, String password) {
         try {
-            //Key key = generateKey(password);
-
-            String key1 = generateKey(password); // 128 bit key
+            String key1 = "ac55c9101bb8d0f7Password1!!!!!!!"; // 128 bit key
             String key2 = "ThisIsASecretKet";
 
             IvParameterSpec iv = new IvParameterSpec(key2.getBytes("UTF-8"));
@@ -37,9 +35,7 @@ public class Security {
 
     public String Decrypt(String encryptedValue, String password) {
         try {
-            //Key key = generateKey(password);
-
-            String key1 = generateKey(password);//"Bar12345Bar12345"; // 128 bit key
+            String key1 = "ac55c9101bb8d0f7Password1!!!!!!!";//"Bar12345Bar12345"; // 128 bit key
             String key2 = "ThisIsASecretKet";
 
             IvParameterSpec iv = new IvParameterSpec(key2.getBytes("UTF-8"));

@@ -36,7 +36,7 @@
     <string name="strong">Forte</string>
     <string name="very_strong">Molto Forte</string>
     <string name="password_strength">"Robustezza password: %s"</string>
-    <string name="password_strength_text">Una password robusta deve avere almeno 8 carateri e contenere una lettera maiuscola un carattere speciale ed almeno un numero</string>
+    <string name="password_strength_text">Una password robusta deve avere almeno 8 carateri, contenere una lettera maiuscola un carattere speciale ed almeno un numero</string>
     <string name="password_ko_check_text">Le password non coincidono</string>
     <string name="password_ok_check_text">Le password coincidono</string>
     <string name="required">Campo richiesto</string>

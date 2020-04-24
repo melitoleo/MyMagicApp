@@ -4,10 +4,10 @@ import android.graphics.Color;
 
 public enum PasswordStrength {
 
-    WEAK(R.string.weak, Color.parseColor("#61ad85")),
-    MEDIUM(R.string.medium, Color.parseColor("#4d8a6a")),
-    STRONG(R.string.strong, Color.parseColor("#3a674f")),
-    VERY_STRONG(R.string.very_strong, Color.parseColor("#264535"));
+    WEAK(R.string.weak, Color.parseColor("#DD0202")),
+    MEDIUM(R.string.medium, Color.parseColor("#FFC107")),
+    STRONG(R.string.strong, Color.parseColor("#157F1F")),
+    VERY_STRONG(R.string.very_strong, Color.parseColor("#075506"));
 
     public int msg;
     public int color;
@@ -78,5 +78,9 @@ public enum PasswordStrength {
 
     public static boolean PasswordCheck(String password, String check){
         return password.equals(check);
+    }
+
+    public static boolean checkPasswordMinLength(String password){
+        return password.length() >= MIN_LENGTH;
     }
 }

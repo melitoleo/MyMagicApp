@@ -3,12 +3,14 @@ package com.example.mymagicapp;
 import android.content.Context;
 
 import androidx.test.platform.app.InstrumentationRegistry;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.runner.AndroidJUnit4;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -17,11 +19,26 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+    private Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+    private Security security = new Security(appContext);
     @Test
     public void useAppContext() {
         // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
         assertEquals("com.example.mymagicapp", appContext.getPackageName());
     }
+
+    @Test
+    public void encryptKey(){
+        String valueToEncript = "Password1!";
+        String password = "Password1!";
+        String encrypt = security.Encrypt(valueToEncript, password);
+
+        assertNotEquals("",encrypt);
+
+        String decrypt = security.Decrypt(encrypt, password);
+
+        assertEquals(valueToEncript, decrypt);
+    }
 }
+

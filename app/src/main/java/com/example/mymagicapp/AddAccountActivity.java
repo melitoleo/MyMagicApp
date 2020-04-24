@@ -55,9 +55,6 @@ public class AddAccountActivity extends AppCompatActivity {
 
         Button btnAddAccount = findViewById(R.id.btnAddAccount);
 
-        TextView txtType =  findViewById(R.id.txtAddType);
-        txtType.setText(type);
-        
         txtDescription = findViewById(R.id.txtAccountDescription);
         txtPassword = findViewById(R.id.txtAccountPassword);
         txtUsername = findViewById(R.id.txtAccountUsername);

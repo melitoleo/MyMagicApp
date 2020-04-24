@@ -29,9 +29,6 @@ import java.util.Random;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    private EditText name;
-    private EditText surname;
-    private EditText email;
     private EditText username;
     private EditText password;
     private EditText confirmPassword;
@@ -56,9 +53,6 @@ public class RegistrationActivity extends AppCompatActivity {
         security = new Security(getApplicationContext());
         database = AccountDatabase.getDatabase(getApplicationContext());
 
-        name = findViewById(R.id.txtName);
-        surname = findViewById(R.id.txtSurname);
-        email = findViewById(R.id.txtMail);
         username = findViewById(R.id.txtUsername);
         password = findViewById(R.id.txtPassword);
         confirmPassword = findViewById(R.id.txtConfirmPassword);
@@ -73,7 +67,6 @@ public class RegistrationActivity extends AppCompatActivity {
             public void onClick(View view) {
                 List<EditText> fieldsCheck = new ArrayList<>();
 
-                fieldsCheck.add(name);
                 fieldsCheck.add(username);
 
                 if(!FieldManager.CheckFieldRequired(getApplicationContext(), fieldsCheck))
@@ -131,9 +124,6 @@ public class RegistrationActivity extends AppCompatActivity {
     private void addUser(View view) {
         User user = new User();
 
-        user.name = name.getText().toString();
-        user.surname = surname.getText().toString();
-        user.email = email.getText().toString();
         user.username = username.getText().toString();
         user.password = security.Encrypt(password.getText().toString(),password.getText().toString());
 
