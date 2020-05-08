@@ -24,4 +24,7 @@ public class User {
 
     @ColumnInfo(name = "password")
     public String password;
+
+    @ColumnInfo(name = "salt")
+    public String salt;
 }

@@ -21,6 +21,9 @@ public interface UserDao {
     @Query("SELECT * FROM user WHERE username = :username AND password = :password")
     User loginUser(String username, String password);
 
+    @Query("SELECT salt FROM user LIMIT 1")
+    String getSalt();
+
     @Insert
     void insert(User user);
 

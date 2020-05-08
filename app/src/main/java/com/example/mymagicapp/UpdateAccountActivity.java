@@ -43,6 +43,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
     private Security security;
     private String userPassword;
     private Spinner spnUpdateType;
+    private User user;
 
     private AccountDatabase database;
 
@@ -58,7 +59,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
         database = AccountDatabase.getDatabase(getApplicationContext());
 
         final Account account = database.accountDao().findAccount(accountId);
-        final User user = database.userDao().findUser(account.userId);
+        user = database.userDao().findUser(account.userId);
 
         Toolbar toolbar = findViewById(R.id.tlb_main);
         ToolBarManager.Setting(getApplicationContext(),toolbar, getString(R.string.update_account_title), account.type, AccountActivity.class);
@@ -85,8 +86,8 @@ public class UpdateAccountActivity extends AppCompatActivity {
         spnUpdateType.setAdapter(dataAdapter);
         spnUpdateType.setSelection(dataAdapter.getPosition(account.type));
 
-        userPassword = security.Decrypt(user.password,user.password);
-        final String accountPassword = security.Decrypt(account.password, userPassword);
+        userPassword = security.Decrypt(user.password,user.password, user.salt);
+        final String accountPassword = security.Decrypt(account.password, userPassword, user.salt);
 
         txtDescription.setText(account.description);
         txtUsername.setText(account.username);
@@ -184,7 +185,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
         updateAccount.description = txtDescription.getText().toString();
         updateAccount.type = spnUpdateType.getSelectedItem().toString();
         updateAccount.username = txtUsername.getText().toString();
-        updateAccount.password = newPassword.isEmpty() ? account.password : security.Encrypt(newPassword, userPassword) ;
+        updateAccount.password = newPassword.isEmpty() ? account.password : security.Encrypt(newPassword, userPassword, user.salt) ;
         updateAccount.creationDate = txtCreationDate.getText().toString();
         updateAccount.userId = account.userId;
 

@@ -122,10 +122,14 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void addUser(View view) {
+        String strPassword = password.getText().toString();
+        String salt = security.generateSalt(strPassword);
+
         User user = new User();
 
         user.username = username.getText().toString();
-        user.password = security.Encrypt(password.getText().toString(),password.getText().toString());
+        user.password = security.Encrypt(strPassword, strPassword, salt);
+        user.salt = salt;
 
         Utility.setApplicationButton(this, btnRegistration);
 

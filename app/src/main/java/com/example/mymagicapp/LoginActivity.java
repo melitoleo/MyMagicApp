@@ -41,12 +41,14 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String password = security.Encrypt(txtPassword.getText().toString(), txtPassword.getText().toString());
+                String salt = database.userDao().getSalt();
+
+                String password = security.Encrypt(txtPassword.getText().toString(), txtPassword.getText().toString(), salt);
 
                 User user = database.userDao().loginUser(username.getText().toString(), password);
 
                 if (user == null) {
-                    txtNotFound.setText(String.format("User %s not found!", username.getText().toString()));
+                    txtNotFound.setText(getString(R.string.prompt_error));
                 } else {
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
                     startActivity(intent);

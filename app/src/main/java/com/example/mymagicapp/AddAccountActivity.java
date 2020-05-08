@@ -64,7 +64,7 @@ public class AddAccountActivity extends AppCompatActivity {
 
         user = database.userDao().getAll().get(0);
 
-        final String password = security.Decrypt(user.password, user.password);
+        final String password = security.Decrypt(user.password, user.password, user.salt);
 
         txtPassword.addTextChangedListener(new TextWatcher() {
             @Override
@@ -103,7 +103,7 @@ public class AddAccountActivity extends AppCompatActivity {
         account.description = txtDescription.getText().toString();
         account.type = type;
         account.username = txtUsername.getText().toString();
-        account.password = security.Encrypt(txtPassword.getText().toString(),password);
+        account.password = security.Encrypt(txtPassword.getText().toString(), password, user.salt);
         account.creationDate = GetDateFormat();
 
         database.accountDao().insert(account);

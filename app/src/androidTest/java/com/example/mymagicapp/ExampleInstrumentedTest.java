@@ -32,11 +32,11 @@ public class ExampleInstrumentedTest {
     public void encryptKey(){
         String valueToEncript = "Password1!";
         String password = "Password1!";
-        String encrypt = security.Encrypt(valueToEncript, password);
+        String encrypt = security.Encrypt(valueToEncript, password,"ssdfsdf");
 
         assertNotEquals("",encrypt);
 
-        String decrypt = security.Decrypt(encrypt, password);
+        String decrypt = security.Decrypt(encrypt, password,"ssdfsdf");
 
         assertEquals(valueToEncript, decrypt);
     }

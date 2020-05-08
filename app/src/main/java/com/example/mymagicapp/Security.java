@@ -1,23 +1,23 @@
 package com.example.mymagicapp;
-
 import android.content.Context;
 import android.provider.Settings;
 import android.util.Base64;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
 public class Security {
-    private static final String ALGORITHM = "AES";
     private Context context;
 
     public Security(Context context){this.context = context;}
 
-    public String Encrypt(String valueToEnc, String password) {
+    public  String Encrypt(String valueToEnc, String password, String salt) {
         try {
-            String key1 = "ac55c9101bb8d0f7Password1!!!!!!!"; // 128 bit key
-            String key2 = "ThisIsASecretKet";
+            String key1 = generateKey(password, salt);
+            String key2 = getSecretKey(password);
 
             IvParameterSpec iv = new IvParameterSpec(key2.getBytes("UTF-8"));
 
@@ -33,10 +33,10 @@ public class Security {
         }
     }
 
-    public String Decrypt(String encryptedValue, String password) {
+    public  String Decrypt(String encryptedValue, String password, String salt) {
         try {
-            String key1 = "ac55c9101bb8d0f7Password1!!!!!!!";//"Bar12345Bar12345"; // 128 bit key
-            String key2 = "ThisIsASecretKet";
+            String key1 = generateKey(password, salt);
+            String key2 = getSecretKey(password);
 
             IvParameterSpec iv = new IvParameterSpec(key2.getBytes("UTF-8"));
 
@@ -52,11 +52,24 @@ public class Security {
         }
     }
 
-    private String generateKey(String password) throws Exception {
-        String key = String.format("%s%s", Settings.Secure.getString(context.getContentResolver(),
-                Settings.Secure.ANDROID_ID), password);
+    public  String generateKey(String password, String salt){
+        return String.format("%s%s",password, salt);
+    }
 
-        return key;
+    public  String generateSalt(String password){
+        int keyByte = 32 - password.length();
+
+        Random random = ThreadLocalRandom.current();
+        byte[] r = new byte[keyByte];
+        random.nextBytes(r);
+
+        return Base64.encodeToString(r, Base64.DEFAULT).substring(0, keyByte);
+    }
+
+    private String getSecretKey(String password) {
+        return String.format("%s%s",
+                Settings.Secure.getString(context.getContentResolver(),
+                Settings.Secure.ANDROID_ID), password);
     }
 }
 
