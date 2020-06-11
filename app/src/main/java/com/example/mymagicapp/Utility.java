@@ -9,8 +9,7 @@ import android.widget.ImageButton;
 import java.util.Random;
 
 public class Utility {
-
-        public static GradientDrawable setRounded(String hexColor){
+    public static GradientDrawable setRounded(String hexColor){
             GradientDrawable gdDefault = new GradientDrawable();
             gdDefault.setColor(Color.parseColor(hexColor));
             gdDefault.setCornerRadius(15);
@@ -19,7 +18,7 @@ public class Utility {
             return  gdDefault;
         }
 
-        public static void setApplicationButton(Context context, Button button){
+    public static void setApplicationButton(Context context, Button button){
             String hexColor = context.getString(R.string.colorPrimary_text);
 
             GradientDrawable gdDefault = new GradientDrawable();

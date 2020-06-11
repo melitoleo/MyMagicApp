@@ -42,4 +42,6 @@
     <string name="password_ok_check_text">Le password coincidono</string>
     <string name="required">Campo richiesto</string>
     <string name="type_exists">"Tipo già esistente"</string>
+    <string name="password_key">password-key</string>
+    <string name="userId_key">user-id-key</string>
 </resources>

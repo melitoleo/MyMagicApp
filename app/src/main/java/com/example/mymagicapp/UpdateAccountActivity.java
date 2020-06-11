@@ -86,7 +86,7 @@ public class UpdateAccountActivity extends AppCompatActivity {
         spnUpdateType.setAdapter(dataAdapter);
         spnUpdateType.setSelection(dataAdapter.getPosition(account.type));
 
-        userPassword = security.Decrypt(user.password,user.password, user.salt);
+        userPassword = Session.getKey(getApplicationContext(),getString(R.string.password_key));
         final String accountPassword = security.Decrypt(account.password, userPassword, user.salt);
 
         txtDescription.setText(account.description);

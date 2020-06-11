@@ -17,7 +17,7 @@ public class Security {
     public  String Encrypt(String valueToEnc, String password, String salt) {
         try {
             String key1 = generateKey(password, salt);
-            String key2 = getSecretKey(password);
+            String key2 = getSecretKey();
 
             IvParameterSpec iv = new IvParameterSpec(key2.getBytes("UTF-8"));
 
@@ -36,7 +36,7 @@ public class Security {
     public  String Decrypt(String encryptedValue, String password, String salt) {
         try {
             String key1 = generateKey(password, salt);
-            String key2 = getSecretKey(password);
+            String key2 = getSecretKey();
 
             IvParameterSpec iv = new IvParameterSpec(key2.getBytes("UTF-8"));
 
@@ -66,10 +66,9 @@ public class Security {
         return Base64.encodeToString(r, Base64.DEFAULT).substring(0, keyByte);
     }
 
-    private String getSecretKey(String password) {
-        return String.format("%s%s",
-                Settings.Secure.getString(context.getContentResolver(),
-                Settings.Secure.ANDROID_ID), password);
+    private String getSecretKey() {
+        return Settings.Secure.getString(context.getContentResolver(),
+                Settings.Secure.ANDROID_ID);
     }
 }
 

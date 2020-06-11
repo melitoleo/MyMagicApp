@@ -74,7 +74,7 @@ public class AccountDescription extends AppCompatActivity {
         tglBtnPassword = findViewById(R.id.btnTogglePassword);
         btnCopy = findViewById(R.id.btnCopy);
 
-        String userPassword = security.Decrypt(user.password,user.password, user.salt);
+        String userPassword = Session.getKey(getApplicationContext(),getString(R.string.password_key));
         final String accountPassword = security.Decrypt(account.password, userPassword, user.salt);
 
         txtType.setText(account.type);

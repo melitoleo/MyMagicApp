@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case R.id.menuLogout:
+                Session.removeAllKey(getApplicationContext());
                 intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
                 finish();

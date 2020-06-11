@@ -3,6 +3,7 @@ package com.example.mymagicapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -42,14 +43,17 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String salt = database.userDao().getSalt();
+                String dgtPassword = txtPassword.getText().toString();
 
-                String password = security.Encrypt(txtPassword.getText().toString(), txtPassword.getText().toString(), salt);
+                String password = security.Encrypt(dgtPassword, dgtPassword, salt);
 
                 User user = database.userDao().loginUser(username.getText().toString(), password);
 
                 if (user == null) {
                     txtNotFound.setText(getString(R.string.prompt_error));
                 } else {
+                    Session.addKey(getApplicationContext(),getString(R.string.password_key), dgtPassword);
+
                     Intent intent = new Intent(view.getContext(), MainActivity.class);
                     startActivity(intent);
                     finish();

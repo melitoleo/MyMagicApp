@@ -63,8 +63,9 @@ public class AddAccountActivity extends AppCompatActivity {
         Utility.setApplicationButton(this, btnAddAccount);
 
         user = database.userDao().getAll().get(0);
+        String userPassword = Session.getKey(getApplicationContext(),getString(R.string.password_key));
 
-        final String password = security.Decrypt(user.password, user.password, user.salt);
+        final String password = security.Decrypt(user.password, userPassword, user.salt);
 
         txtPassword.addTextChangedListener(new TextWatcher() {
             @Override
