@@ -76,9 +76,11 @@ public class TypeActivity extends AppCompatActivity {
             type.hexcolor = Utility.getRandomHexColor();
             database.typeDao().insert(type);
 
-            Intent intent = new Intent(view.getContext(), MainActivity.class);
-            startActivity(intent);
             finish();
+            startActivity(getIntent());
+            //Intent intent = new Intent(view.getContext(), MainActivity.class);
+            //startActivity(intent);
+            //finish();
         }
     }
 }

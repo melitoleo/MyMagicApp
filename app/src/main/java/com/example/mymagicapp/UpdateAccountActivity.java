@@ -118,7 +118,6 @@ public class UpdateAccountActivity extends AppCompatActivity {
 
                 fieldsCheck.add(txtDescription);
                 fieldsCheck.add(txtUsername);
-                fieldsCheck.add(txtPassword);
 
                 if(!FieldManager.CheckFieldRequired(getApplicationContext(), fieldsCheck))
                     updateAccount(accountId, account);

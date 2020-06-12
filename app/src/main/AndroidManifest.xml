@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:windowSoftInputMode="stateVisible|adjustResize">
+        android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
         <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,13 +17,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UpdateAccountActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".UpdateAccountActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+        <activity android:name=".LoginActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
         <activity android:name=".UpdateUserInfoActivity" />
-        <activity android:name=".TypeActivity" />
+        <activity android:name=".TypeActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
         <activity android:name=".MainActivity" />
         <activity android:name=".AccountDescription" />
-        <activity android:name=".AddAccountActivity" />
+        <activity android:name=".AddAccountActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
         <activity android:name=".AccountActivity" />
         <activity android:name=".RegistrationActivity" />
     </application>
