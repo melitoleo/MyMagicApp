@@ -78,9 +78,6 @@ public class TypeActivity extends AppCompatActivity {
 
             finish();
             startActivity(getIntent());
-            //Intent intent = new Intent(view.getContext(), MainActivity.class);
-            //startActivity(intent);
-            //finish();
         }
     }
 }

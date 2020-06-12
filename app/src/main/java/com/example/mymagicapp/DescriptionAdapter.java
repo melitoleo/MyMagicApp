@@ -1,6 +1,7 @@
 package com.example.mymagicapp;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -115,7 +116,13 @@ public class DescriptionAdapter extends RecyclerView.Adapter<DescriptionAdapter.
             public void onColorChosen(@ColorInt int color) {
                 type.hexcolor= String.format("#%06X", (0xFFFFFF & color));
                 database.typeDao().update(type);
+                Refresh();
             }
         });
+    }
+
+    private void Refresh(){
+        activity.finish();
+        activity.startActivity(activity.getIntent());
     }
 }
