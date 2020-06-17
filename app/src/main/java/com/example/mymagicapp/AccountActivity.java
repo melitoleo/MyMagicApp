@@ -24,7 +24,6 @@ public class AccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-
         Bundle b = getIntent().getExtras();
         final String type = b.getString("type");
 

@@ -1,10 +1,12 @@
 package com.example.mymagicapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
@@ -126,12 +128,33 @@ public class AccountDescription extends AppCompatActivity {
                 break;
 
             case R.id.account_delete:
+                openConfirmDialog();
+                break;
+
+        }
+        return true;
+    }
+
+    private void openConfirmDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.dialog_tile));
+        builder.setMessage(String.format(getString(R.string.dialog_message), account.description));
+
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                Intent intent;
                 database.accountDao().delete(account);
                 intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 finish();
-                break;
-        }
-        return true;
+            }
+        });
+        builder.setNegativeButton(R.string.ko, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 }
