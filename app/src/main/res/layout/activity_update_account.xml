@@ -215,12 +215,11 @@
                         android:layout_width="50dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="16dp"
-                        android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/user" />
+                        app:srcCompat="@drawable/ic_baseline_vpn_key_24" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/txtIlNewPassword"
@@ -276,7 +275,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/user" />
+                        app:srcCompat="@drawable/ic_baseline_vpn_key_24" />
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/txtllNewPassword"
