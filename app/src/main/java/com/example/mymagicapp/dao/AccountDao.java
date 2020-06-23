@@ -23,6 +23,9 @@ public interface AccountDao {
     @Query("SELECT * FROM account WHERE id = :id")
     Account findAccount(int id);
 
+    @Query("UPDATE account SET password = :password WHERE id = :id")
+    void updatePassword(String password, int id);
+
     @Insert
     void insert(Account account);
 

@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.mymagicapp.dao.AccountDatabase;
+import com.example.mymagicapp.domain.Account;
 import com.example.mymagicapp.domain.Type;
 import com.example.mymagicapp.domain.User;
 
@@ -27,6 +29,10 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
     private AccountDatabase database;
     private User userInfo;
 
+    private Security security;
+    private String newSalt;
+    private String userPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +42,7 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
         ToolBarManager.Setting(getApplicationContext(),toolbar, getString(R.string.user_info_title), null, MainActivity.class);
 
         final Button btnUpdate = findViewById(R.id.btnUpdateUserInfo);
-        final Security security = new Security(getApplicationContext());
+        security = new Security(getApplicationContext());
 
         name = findViewById(R.id.txtUpdateName);
         surname = findViewById(R.id.txtUpdateSurname);
@@ -47,12 +53,13 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
         database = AccountDatabase.getDatabase(getApplicationContext());
 
         userInfo = database.userDao().getAll().get(0);
+        userPassword = Session.getKey(getApplicationContext(),getString(R.string.password_key));
 
         name.setText(userInfo.name);
         surname.setText(userInfo.surname);
         email.setText(userInfo.email);
         username.setText(userInfo.username);
-        password.setText(userInfo.password);
+        password.setText(userPassword);
 
         Utility.setApplicationButton(this, btnUpdate);
 
@@ -72,6 +79,8 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
     }
 
     private void updateUser(View view) {
+        String newPassword = password.getText().toString();
+
         User user = new User();
 
         user.id = userInfo.id;
@@ -79,13 +88,41 @@ public class UpdateUserInfoActivity extends AppCompatActivity {
         user.surname = surname.getText().toString();
         user.email = email.getText().toString();
         user.username = username.getText().toString();
-        user.password = userInfo.password;
-        //user.password = security.Encrypt(password.getText().toString(),password.getText().toString());
+
+        if(newPassword!=userPassword) {
+            if(updateAccountPasswords(newPassword)){
+                user.salt = newSalt;
+                user.password = security.Encrypt(newPassword,newPassword,newSalt);
+                Session.addKey(getApplicationContext(), getString(R.string.password_key), newPassword);
+            }else{
+                Toast.makeText(this, "Aggiornamento Password non riuscito, si prega di riprovare", Toast.LENGTH_LONG).show();
+            }
+        }else {
+            user.salt = userInfo.salt;
+            user.password = userInfo.password;
+        }
 
         database.userDao().update(user);
 
         Intent intent = new Intent(view.getContext(), MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private boolean updateAccountPasswords(String password){
+        try {
+            List<Account> userAccounts = database.accountDao().findUserAccount(userInfo.id);
+
+            newSalt = security.generateSalt(password);
+
+            for (Account account : userAccounts) {
+                String accountPass = security.Decrypt(account.password, userPassword, userInfo.salt);
+                String encryptPass = security.Encrypt(accountPass, password, newSalt);
+                database.accountDao().updatePassword(encryptPass, account.id);
+            }
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 }
