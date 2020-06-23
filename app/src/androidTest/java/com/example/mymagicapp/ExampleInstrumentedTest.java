@@ -30,18 +30,18 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void encryptKey(){
-        String valueToEncript = "Password1!";
-        String password = "Password1!";
+        String valueToEncrypt = "12345678901234567890";
+        String password = "12345678901234567890";
 
         String salt = security.generateSalt(password);
 
-        String encrypt = security.Encrypt(valueToEncript, password,salt);
+        String encrypt = security.Encrypt(valueToEncrypt, password,salt);
 
         assertNotEquals("",encrypt);
 
         String decrypt = security.Decrypt(encrypt, password,salt);
 
-        assertEquals(valueToEncript, decrypt);
+        assertEquals(valueToEncrypt, decrypt);
     }
 }
 

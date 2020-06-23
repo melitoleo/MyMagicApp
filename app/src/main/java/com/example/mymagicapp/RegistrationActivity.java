@@ -61,13 +61,13 @@ public class RegistrationActivity extends AppCompatActivity {
 
         Utility.setApplicationButton(this, btnRegistration);
 
-        btnRegistration.setEnabled(false);
-
         btnRegistration.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 List<EditText> fieldsCheck = new ArrayList<>();
 
                 fieldsCheck.add(username);
+                fieldsCheck.add(password);
+                fieldsCheck.add(confirmPassword);
 
                 if(!FieldManager.CheckFieldRequired(getApplicationContext(), fieldsCheck))
                     addUser(view);
@@ -102,14 +102,12 @@ public class RegistrationActivity extends AppCompatActivity {
                 String ckPwd = confirmPassword.getText().toString();
 
                 txtPwCheck.setText("");
-                btnRegistration.setEnabled(false);
 
                 if(s.length() >= pwd.length()) {
                     if (!PasswordStrength.PasswordCheck(pwd, ckPwd))
                         txtPwCheck.setText(getString(R.string.password_ko_check_text));
                     else {
                         txtPwCheck.setText(getString(R.string.password_ok_check_text));
-                        btnRegistration.setEnabled(true);
                     }
                 }
             }
