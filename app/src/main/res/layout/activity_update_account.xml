@@ -63,7 +63,8 @@
                             android:id="@+id/txtUpdateDescription"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/account_description" />
+                            android:hint="@string/account_description"
+                            android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
@@ -143,7 +144,8 @@
                             android:id="@+id/txtUpdateUsername"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/prompt_username" />
+                            android:hint="@string/prompt_username"
+                            android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -193,7 +195,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
-                            android:hint="@string/prompt_password" />
+                            android:hint="@string/prompt_password"
+                            android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -237,7 +240,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/prompt_new_password"
-                            android:inputType="textPassword" />
+                            android:inputType="textPassword"
+                            android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <TextView
@@ -346,7 +350,8 @@
                             android:id="@+id/txtUpdateDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/prompt_creationDate" />
+                            android:hint="@string/prompt_creationDate"
+                            android:textSize="14sp" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
